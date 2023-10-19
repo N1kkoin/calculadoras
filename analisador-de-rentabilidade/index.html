@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Calculadora</title>
 </head>
+
 <body>
     <h1>Calculadora</h1>
     <form id="calculator">
@@ -24,34 +26,15 @@
         <label for="dataVenda">Data de venda (dd/mm/aaaa):</label>
         <input type="text" id="dataVenda" required><br>
 
-        <input type="submit" value="Calcular">
-
         <p>Lucro Final Selic: <span id="selicValue">Carregando...</span></p>
 
     </form>
 
-    <div id="resultado"></div>
     <script src="script.js"></script>
     <script>
-        document.getElementById("calculator").addEventListener("submit", function (e) {
-            e.preventDefault();
 
-            const valorPago = parseFloat(document.getElementById("valorPago").value);
-            const custos = parseFloat(document.getElementById("custos").value);
-            const valorVenda = parseFloat(document.getElementById("valorVenda").value);
-            const deducoes = parseFloat(document.getElementById("deducoes").value);
 
-            const dataCompra = new Date(document.getElementById("dataCompra").value);
-            const dataVenda = new Date(document.getElementById("dataVenda").value);
-
-            // Faça os cálculos desejados aqui
-            const resultado = "Resultado do cálculo aqui";
-
-            document.getElementById("resultado").textContent = resultado;
-        });
-
-        
-        
     </script>
 </body>
+
 </html>
