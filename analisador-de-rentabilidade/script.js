@@ -144,6 +144,31 @@ deducoesInput.addEventListener('input', () => {
 });
 
 
+
+
+
+// Eventos para calcular o custo total e o lucro final quando os campos são atualizados
+document.querySelector('.valorpago').addEventListener('keyup', function() {
+    calcularCustoTotal();
+    calcularLucroFinal();
+    calcularLucratividadeTotal(); // Atualize a lucratividade total quando um dos campos for atualizado
+});
+document.querySelector('.custos').addEventListener('keyup', function() {
+    calcularCustoTotal();
+    calcularLucroFinal();
+    calcularLucratividadeTotal(); // Atualize a lucratividade total quando um dos campos for atualizado
+});
+document.querySelector('.valorvenda').addEventListener('keyup', function() {
+    calcularLucroFinal();
+    calcularLucratividadeTotal(); // Atualize a lucratividade total quando um dos campos for atualizado
+});
+document.querySelector('.deducoes').addEventListener('keyup', function() {
+    calcularLucroFinal();
+    calcularLucratividadeTotal(); // Atualize a lucratividade total quando um dos campos for atualizado
+});
+
+
+
 // VALOR PAGO + CUSTOS = CUSTOTOTAL -----------------------------------------------------------------------------------------------------------------
 
 // Função para calcular o custo total
@@ -228,7 +253,7 @@ function calcularLucroFinal() {
 
   
     // Adicione "R$" ao valor do lucro final
-    lucroFinalElement.textContent = "R$ " + formatCurrency(lucroFinal);
+    lucroFinalElement.textContent ="R$ " + formatCurrency(lucroFinal);
 }
 
 // Eventos para calcular o custo total e o lucro final
@@ -242,3 +267,58 @@ calcularCustoTotal();
 
 // Calcular o lucro final na carga da página
 calcularLucroFinal();
+
+
+
+// LUCRATIVIDADE TOTAL -------------------------------------------------------------------------------------
+
+// Função para calcular a lucratividade total
+function calcularLucratividadeTotal() {
+    const lucroFinalElement = document.getElementById('lucrofinal');
+    const custoTotalElement = document.getElementById('custototal');
+    
+    if (lucroFinalElement && custoTotalElement) {
+        const lucroFinalText = lucroFinalElement.textContent;
+        const custoTotalText = custoTotalElement.textContent;
+
+        // Realiza o parse diretamente nas variáveis
+        const lucroFinal = parseFloat(lucroFinalText.replace(/[^0-9.-]+/g,""));
+        const custoTotal = parseFloat(custoTotalText.replace(/[^0-9.-]+/g,""));
+
+        // Verifique se ambos lucroFinal e custoTotal são números válidos
+        if (!isNaN(lucroFinal) && !isNaN(custoTotal)) {
+            // Calcula a lucratividade total como uma porcentagem
+            const lucratividadeTotalDecimal = (lucroFinal / custoTotal);
+            const lucratividadeTotalPorcentagem = (lucratividadeTotalDecimal * 100).toFixed(2);
+
+            // Verifica se a lucratividade é negativa e adiciona o sinal de "-"
+            if (lucratividadeTotalDecimal < 0) {
+                document.getElementById('lucratividadetotal').textContent = '-' + Math.abs(lucratividadeTotalPorcentagem) + '%';
+            } else {
+                document.getElementById('lucratividadetotal').textContent = lucratividadeTotalPorcentagem + '%';
+            }
+        } else {
+            // Se um dos valores não for um número válido, exiba "0%"
+            document.getElementById('lucratividadetotal').textContent = '0%';
+        }
+    } else {
+        // Se os elementos não forem encontrados, exiba "0%"
+        document.getElementById('lucratividadetotal').textContent = '0%';
+    }
+}
+
+
+// Eventos para calcular o custo total e o lucro final quando os campos são atualizados
+document.querySelector('.valorpago').addEventListener('keyup', calcularCustoTotal);
+document.querySelector('.custos').addEventListener('keyup', calcularCustoTotal);
+document.querySelector('.valorvenda').addEventListener('keyup', calcularLucroFinal);
+document.querySelector('.deducoes').addEventListener('keyup', calcularLucroFinal);
+
+// Chama a função para calcular o custo total na carga da página
+calcularCustoTotal();
+
+// Chama a função para calcular o lucro final na carga da página
+calcularLucroFinal();
+
+// Chama a função para calcular a lucratividade total na carga da página
+calcularLucratividadeTotal();

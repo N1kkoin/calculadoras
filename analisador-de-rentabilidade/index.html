@@ -19,13 +19,13 @@
           <th>Data de Compra</th>
           <th>Data de Venda</th>
         </tr>
-        <tr> valorvenda - deducoes - custototal = id="lucrofinal"
+        <tr> lucrofinal / custototal
           <td><input class="valorpago" type="text" onkeyup="formatCurrency(this)"></td>
           <td><input class="custos" type="text" onkeyup="formatCurrency(this)"></td>
           <td><span id="custototal"></span></td>
           <td><input class="valorvenda" type="text" onkeyup="formatInputCurrency(this)"></td>
           <td><input class="deducoes" type="text" onkeyup="formatInputCurrency(this)"></td>
-          <td><span id="lucrofinal" ></span></td>
+          <td><span id="lucrofinal"></span></td>
           <td><input class="datacompra" type="date"></td>
           <td><input class="datavenda" type="date"></td>
         </tr>
@@ -40,7 +40,7 @@
           <th>Tempo (meses)</th>
         </tr>
         <tr>
-          <td><input type="text" value="100,00%"></td>
+          <td><span id="lucratividadetotal"></span></td>
           <td><input type="text" value="0,032%"></td>
           <td><input type="text" value="0,95%"></td>
           <td><input type="text" value="12,06%"></td>
