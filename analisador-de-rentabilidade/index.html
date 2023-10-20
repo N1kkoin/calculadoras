@@ -19,13 +19,13 @@
           <th>Data de Compra</th>
           <th>Data de Venda</th>
         </tr>
-        <tr>
-          <td><input type="text" value="R$ 2.500,00"></td>
-          <td><input type="text" value="R$ 0,00"></td>
-          <td><input type="text" value="R$ 2.500,00"></td>
-          <td><input type="text" value="R$ 5.000,00"></td>
-          <td><input type="text" value="R$ 0,00"></td>
-          <td><input type="text" value="R$ 2.500,00"></td>
+        <tr> valorvenda - deducoes - custototal = id="lucrofinal"
+          <td><input class="valorpago" type="text" onkeyup="formatCurrency(this)"></td>
+          <td><input class="custos" type="text" onkeyup="formatCurrency(this)"></td>
+          <td><span id="custototal"></span></td>
+          <td><input class="valorvenda" type="text" onkeyup="formatInputCurrency(this)"></td>
+          <td><input class="deducoes" type="text" onkeyup="formatInputCurrency(this)"></td>
+          <td><span id="lucrofinal" ></span></td>
           <td><input class="datacompra" type="date"></td>
           <td><input class="datavenda" type="date"></td>
         </tr>
