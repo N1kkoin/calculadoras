@@ -96,8 +96,8 @@ function calcularDiferencaMeses() {
         const diferencaDias = Math.abs((dataVenda - dataCompra) / (1000 * 60 * 60 * 24));
         const diferencaMeses = (dataVenda.getMonth() + 1) + (dataVenda.getFullYear() - dataCompra.getFullYear()) * 12 - (dataCompra.getMonth() + 1);
 
-        tempodiasSpan.textContent = diferencaDias + ' dias';
-        tempomesesSpan.textContent = diferencaMeses + ' meses';
+        tempodiasSpan.textContent = diferencaDias;
+        tempomesesSpan.textContent = diferencaMeses;
     } else {
         tempodiasSpan.textContent = 'Tempo em dias';
         tempomesesSpan.textContent = 'Tempo em meses';
@@ -297,3 +297,5 @@ document.querySelector('.deducoes').addEventListener('keyup', calcularLucrativid
 
 // Calcular a lucratividade total na carga da página
 calcularLucratividadeTotal();
+
+//LUCRATIVIDADE DIAS MESES E ANOS ------------------------------------------------------------------------------------------------------------------------------
