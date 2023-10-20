@@ -60,3 +60,4 @@ fetchSelicValue();
         validarData(dataVendaInput);
     });
 
+

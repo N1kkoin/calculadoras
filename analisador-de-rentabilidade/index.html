@@ -3,32 +3,54 @@
 
 <head>
     <title>Calculadora</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
     <h1>Calculadora</h1>
-    <form id="calculator">
-        <label for="valorPago">Valor pago:</label>
-        <input type="number" id="valorPago" required><br>
-
-        <label for="custos">Custos (corretagem e afins):</label>
-        <input type="number" id="custos" required><br>
-
-        <label for="valorVenda">Valor de venda:</label>
-        <input type="number" id="valorVenda" required><br>
-
-        <label for="deducoes">Deduções:</label>
-        <input type="number" id="deducoes" required><br>
-
-        <label for="dataCompra">Data de compra (dd/mm/aaaa):</label>
-        <input type="text" id="dataCompra" required><br>
-
-        <label for="dataVenda">Data de venda (dd/mm/aaaa):</label>
-        <input type="text" id="dataVenda" required><br>
-
-        <p>Lucro Final Selic: <span id="selicValue">Carregando...</span></p>
-
-    </form>
+    <table>
+        <tr>
+          <th>Valor pago (sem custos)</th>
+          <th>Custos (corretagem e afins)</th>
+          <th>Custo Total</th>
+          <th>Valor de Venda</th>
+          <th>Deduções</th>
+          <th>Lucro Final</th>
+          <th>Data de Compra</th>
+          <th>Data de Venda</th>
+        </tr>
+        <tr>
+          <td><input type="text" value="R$ 2.500,00"></td>
+          <td><input type="text" value="R$ 0,00"></td>
+          <td><input type="text" value="R$ 2.500,00"></td>
+          <td><input type="text" value="R$ 5.000,00"></td>
+          <td><input type="text" value="R$ 0,00"></td>
+          <td><input type="text" value="R$ 2.500,00"></td>
+          <td><input type="text" value="01/01/2015"></td>
+          <td><input type="text" value="01/01/2021"></td>
+        </tr>
+        <tr>
+          <th>Lucratividade Total</th>
+          <th>Lucratividade em Dias</th>
+          <th>Lucratividade em Meses</th>
+          <th>Lucratividade em Anos</th>
+          <th>Poupança mensal</th>
+          <th>SELIC anual (consultar em bcb.gov.br)</th>
+          <th>Tempo (dias)</th>
+          <th>Tempo (meses)</th>
+        </tr>
+        <tr>
+          <td><input type="text" value="100,00%"></td>
+          <td><input type="text" value="0,032%"></td>
+          <td><input type="text" value="0,95%"></td>
+          <td><input type="text" value="12,06%"></td>
+          <td><input type="text" value="0,710%"></td>
+          <td><span id="selicValue">...</span>%</td>
+          <td><input type="text" value="2192"></td>
+          <td><input type="text" value="73"></td>
+        </tr>
+      </table>
+    
 
     <script src="script.js"></script>
     <script>

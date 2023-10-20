@@ -1,0 +1,43 @@
+css
+Copy code
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px;
+}
+
+th, td {
+  padding: 10px;
+  text-align: center;
+  border: 1px solid #ddd;
+}
+
+input[type="text"] {
+  width: 100%;
+  padding: 5px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+
+/* Estilizar as células da primeira coluna (rótulos) */
+table tr > :first-child {
+  background-color: #f0f0f0;
+  font-weight: bold;
+}
+
+/* Estilizar os campos de entrada da segunda coluna (valores) */
+table tr > :nth-child(2) input[type="text"],
+table tr > :nth-child(4) input[type="text"],
+table tr > :nth-child(6) input[type="text"],
+table tr > :nth-child(7) input[type="text"],
+table tr > :nth-child(8) input[type="text"] {
+  font-weight: bold;
+}
+
+/* Estilizar os campos de entrada da última linha */
+table tr:last-child input[type="text"] {
+  font-weight: bold;
+  background-color: #f0f0f0;
+}
