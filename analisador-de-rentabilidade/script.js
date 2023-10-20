@@ -271,78 +271,29 @@ calcularLucroFinal();
 
 
 // LUCRATIVIDADE TOTAL -------------------------------------------------------------------------------------
-
-// Função para calcular a lucratividade total
 function calcularLucratividadeTotal() {
+    // Obtenha o valor do lucro final do elemento com o id "lucrofinal"
     const lucroFinalElement = document.getElementById('lucrofinal');
+    const lucroFinal = parseFloat(lucroFinalElement.textContent.replace(/[^\d.-]/g, ''));
+
+    // Obtenha o valor do custo total do elemento com o id "custototal"
     const custoTotalElement = document.getElementById('custototal');
-    
-    if (lucroFinalElement && custoTotalElement) {
-        const lucroFinalText = lucroFinalElement.textContent;
-        const custoTotalText = custoTotalElement.textContent;
+    const custoTotal = parseFloat(custoTotalElement.textContent.replace(/[^\d.-]/g, ''));
 
-        // Realiza o parse diretamente nas variáveis
-        const lucroFinal = parseFloat(lucroFinalText.replace(/[^0-9.-]+/g,""));
-        const custoTotal = parseFloat(custoTotalText.replace(/[^0-9.-]+/g,""));
+    // Calcule a lucratividade total
+    const lucratividadeTotal = (lucroFinal / custoTotal) * 100; // Em porcentagem
 
-        // Verifique se ambos lucroFinal e custoTotal são números válidos
-        if (!isNaN(lucroFinal) && !isNaN(custoTotal)) {
-            // Calcula a lucratividade total como uma porcentagem
-            const lucratividadeTotalDecimal = (lucroFinal / custoTotal);
-            const lucratividadeTotalPorcentagem = (lucratividadeTotalDecimal * 100).toFixed(2);
-
-            // Verifica se a lucratividade é negativa e adiciona o sinal de "-"
-            if (lucratividadeTotalDecimal < 0) {
-                document.getElementById('lucratividadetotal').textContent = '-' + Math.abs(lucratividadeTotalPorcentagem) + '%';
-            } else {
-                document.getElementById('lucratividadetotal').textContent = lucratividadeTotalPorcentagem + '%';
-            }
-        } else {
-            // Se um dos valores não for um número válido, exiba "0%"
-            document.getElementById('lucratividadetotal').textContent = '0%';
-        }
-    } else {
-        // Se os elementos não forem encontrados, exiba "0%"
-        document.getElementById('lucratividadetotal').textContent = '0%';
-    }
+    // Exiba a lucratividade total no elemento com o id "lucratividadetotal" formatada como porcentagem
+    const lucratividadeTotalElement = document.getElementById('lucratividadetotal');
+    lucratividadeTotalElement.textContent = lucratividadeTotal.toLocaleString('pt-BR', { style: 'percent', minimumFractionDigits: 2 });
 }
 
 
-// Eventos para calcular o custo total e o lucro final quando os campos são atualizados
-document.querySelector('.valorpago').addEventListener('keyup', calcularCustoTotal);
-document.querySelector('.custos').addEventListener('keyup', calcularCustoTotal);
-document.querySelector('.valorvenda').addEventListener('keyup', calcularLucroFinal);
-document.querySelector('.deducoes').addEventListener('keyup', calcularLucroFinal);
+// Eventos para calcular a lucratividade total quando os campos são atualizados
+document.querySelector('.valorpago').addEventListener('keyup', calcularLucratividadeTotal);
+document.querySelector('.custos').addEventListener('keyup', calcularLucratividadeTotal);
+document.querySelector('.valorvenda').addEventListener('keyup', calcularLucratividadeTotal);
+document.querySelector('.deducoes').addEventListener('keyup', calcularLucratividadeTotal);
 
-// Chama a função para calcular o custo total na carga da página
-calcularCustoTotal();
-
-// Chama a função para calcular o lucro final na carga da página
-calcularLucroFinal();
-
-// Chama a função para calcular a lucratividade total na carga da página
+// Calcular a lucratividade total na carga da página
 calcularLucratividadeTotal();
-
-
-//LUCRATIVIDADE EM DIAS ----------------------------------------------------------------------------
-// Atualize o resultado de lucratividade a cada segundo
-setInterval(function() {
-    calcularResultadoDias();
-}, 1000);
-
-// Função para calcular e exibir a lucratividade em dias
-function calcularResultadoDias() {
-    // Obtenha os valores de lucratividadetotal e tempodias
-    var lucratividadetotalElement = document.getElementById("lucratividadetotal");
-    var tempodiasElement = document.getElementById("tempodias");
-
-    var lucratividadetotal = parseFloat(lucratividadetotalElement.textContent) || 0;
-    var tempodias = parseFloat(tempodiasElement.textContent.split(' ')[0]) || 0;
-
-    // Calcule o resultado
-    var resultadoDias = Math.pow(1 + lucratividadetotal, 1 / tempodias) - 1;
-
-    // Exiba o resultado na célula com o ID "lucratividadedias"
-    var lucratividadediasElement = document.getElementById("lucratividadedias");
-    lucratividadediasElement.textContent = (resultadoDias * 100).toFixed(3) + '%'; // Ajuste o número de casas decimais conforme necessário
-}
