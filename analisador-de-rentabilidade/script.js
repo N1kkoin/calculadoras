@@ -322,3 +322,27 @@ calcularLucroFinal();
 
 // Chama a função para calcular a lucratividade total na carga da página
 calcularLucratividadeTotal();
+
+
+//LUCRATIVIDADE EM DIAS ----------------------------------------------------------------------------
+// Atualize o resultado de lucratividade a cada segundo
+setInterval(function() {
+    calcularResultadoDias();
+}, 1000);
+
+// Função para calcular e exibir a lucratividade em dias
+function calcularResultadoDias() {
+    // Obtenha os valores de lucratividadetotal e tempodias
+    var lucratividadetotalElement = document.getElementById("lucratividadetotal");
+    var tempodiasElement = document.getElementById("tempodias");
+
+    var lucratividadetotal = parseFloat(lucratividadetotalElement.textContent) || 0;
+    var tempodias = parseFloat(tempodiasElement.textContent.split(' ')[0]) || 0;
+
+    // Calcule o resultado
+    var resultadoDias = Math.pow(1 + lucratividadetotal, 1 / tempodias) - 1;
+
+    // Exiba o resultado na célula com o ID "lucratividadedias"
+    var lucratividadediasElement = document.getElementById("lucratividadedias");
+    lucratividadediasElement.textContent = (resultadoDias * 100).toFixed(3) + '%'; // Ajuste o número de casas decimais conforme necessário
+}
