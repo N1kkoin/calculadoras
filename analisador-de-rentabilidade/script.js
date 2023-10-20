@@ -299,3 +299,54 @@ document.querySelector('.deducoes').addEventListener('keyup', calcularLucrativid
 calcularLucratividadeTotal();
 
 //LUCRATIVIDADE DIAS MESES E ANOS ------------------------------------------------------------------------------------------------------------------------------
+
+// ...
+
+// Função para calcular as lucratividades em dias, meses e anos
+function calcularLucratividades() {
+    const lucratividadetotalElement = document.getElementById("lucratividadetotal");
+    const tempodiasElement = document.getElementById("tempodias");
+
+    // Obtenha os valores necessários
+    const lucratividadetotal = parseFloat(lucratividadetotalElement.textContent) / 100; // Converta para decimal
+    const tempodias = parseFloat(tempodiasElement.textContent);
+
+    console.log("Lucratividade Total:", lucratividadetotal);
+    console.log("Tempo em dias:", tempodias);
+
+    // Calcule as lucratividades
+    const lucratividadedias = Math.pow(1 + lucratividadetotal, 1 / tempodias) - 1;
+    const lucratividademeses = Math.pow(1 + lucratividadedias, 30) - 1;
+    const lucratividadeanos = Math.pow(1 + lucratividademeses, 12) - 1;
+
+    console.log("Lucratividade em Dias:", lucratividadedias);
+    console.log("Lucratividade em Meses:", lucratividademeses);
+    console.log("Lucratividade em Anos:", lucratividadeanos);
+
+    // Atualize os elementos com os resultados
+    document.getElementById("lucratividadedias").textContent = (lucratividadedias * 100).toFixed(3) + "%";
+    document.getElementById("lucratividademeses").textContent = (lucratividademeses * 100).toFixed(3) + "%";
+    document.getElementById("lucratividadeanos").textContent = (lucratividadeanos * 100).toFixed(3) + "%";
+}
+
+// Atualize as lucratividades quando algum número relevante é atualizado
+function atualizarLucratividades() {
+    calcularCustoTotal();
+    calcularLucroFinal();
+    calcularLucratividadeTotal();
+    calcularLucratividades();
+}
+
+// Adicione eventos de mudança de entrada aos campos que afetam os cálculos
+document.querySelector('.valorpago').addEventListener('keyup', atualizarLucratividades);
+document.querySelector('.custos').addEventListener('keyup', atualizarLucratividades);
+document.querySelector('.valorvenda').addEventListener('keyup', atualizarLucratividades);
+document.querySelector('.deducoes').addEventListener('keyup', atualizarLucratividades);
+document.querySelector('.datacompra').addEventListener('change', atualizarLucratividades);
+document.querySelector('.datavenda').addEventListener('change', atualizarLucratividades);
+
+// Calcular o custo total e lucratividades na carga da página
+calcularCustoTotal();
+calcularLucratividades();
+
+// ...
