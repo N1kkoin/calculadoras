@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+
+<body>
+    <p class="explica">Escolha um dos dois métodos de cálculo. </br>Método 1 se você souber os preços de ambos os
+        combustíveis </br>Método 2 se você souber apenas o preço da gasolina, daí só coloque etanol se o preço for menor
+        do que o calculado.</p>
+    <div class="calculator">
+        <h2>Calculadora de Gasolina X Etanol</h2>
+        <select id="method" onchange="methodChange()">
+            <option value="1">Método 1 - Sei ambos os preços</option>
+            <option value="2">Método 2 - Só sei preço da gasolina</option>
+        </select>
+        <div class="inputsnumeros">
+            <input type="number" id="etanolPrice" placeholder="Preço do Etanol" />
+            <input type="number" id="gasolinaPrice" placeholder="Preço da Gasolina" />
+        </div>
+
+        <button onclick="calculate()">Calcular</button>
+        <div id="result" class="result"></div>
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
