@@ -5,8 +5,8 @@ function calculate() {
     var result = document.getElementById('result');
 
     // Removendo o símbolo "R$" dos valores
-    etanolPrice = etanolPrice.replace('R$ ', '');
-    gasolinaPrice = gasolinaPrice.replace('R$ ', '');
+    etanolPrice = etanolPrice.replace('R$ ', '').replace(',', '.');
+    gasolinaPrice = gasolinaPrice.replace('R$ ', '').replace(',', '.');
 
     if (method === "1") {
         if (etanolPrice && gasolinaPrice) {
@@ -36,45 +36,37 @@ function calculate() {
 }
 
 function addCurrencySymbol(input) {
-    // Adiciona o símbolo "R$" apenas se o campo não estiver vazio e não contiver já o símbolo "R$"
     var currentValue = input.value.trim();
     if (currentValue && !currentValue.startsWith('R$')) {
+        input.value = 'R$ ' + currentValue;
+    } if (!currentValue.startsWith('R$')) {
         input.value = 'R$ ' + currentValue;
     }
 }
 
 function removeCurrencySymbol(input) {
-    // Remove o símbolo "R$" se o campo estiver vazio ou contiver apenas o símbolo "R$"
     var currentValue = input.value.trim();
-    if (!currentValue || currentValue === 'R$') {
-        input.value = '';
+    if (!currentValue.startsWith('R$')) {
+        input.value = 'R$ ' + currentValue;
     }
 }
 
+
 window.onload = function() {
     var inputs = document.querySelectorAll('#etanolPrice, #gasolinaPrice');
     inputs.forEach(function(input) {
-        input.oninput = function() {
+        input.addEventListener('input', function() {
             addCurrencySymbol(input);
-        };
-        input.onblur = function() {
+        });
+
+        input.addEventListener('blur', function() {
             removeCurrencySymbol(input);
-        };
-        input.onfocus = function() {
-            addCurrencySymbol(input);
-        };
-        addCurrencySymbol(input); // Adiciona o símbolo "R$" se já existir um valor
-    });
-};
+        });
 
-
-// Adicionando o símbolo "R$" ao carregar a página
-window.onload = function() {
-    var inputs = document.querySelectorAll('#etanolPrice, #gasolinaPrice');
-    inputs.forEach(function(input) {
-        input.oninput = function() {
+        input.addEventListener('focus', function() {
             addCurrencySymbol(input);
-        };
+        });
+
         addCurrencySymbol(input); // Adiciona o símbolo "R$" se já existir um valor
     });
 };
