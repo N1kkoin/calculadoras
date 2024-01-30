@@ -1,6 +1,6 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+    background-color: #0c1027;
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -11,6 +11,7 @@ body {
     margin: 0 auto;
     margin-bottom: 20px;
     font-size: small;
+    color: #d5dcf1;
 }
 
 .inputsnumeros{
@@ -18,30 +19,31 @@ body {
     gap: 10px;
 }
 .calculator {
-    max-width: 500px;
+    width: 500px;
     display: flex;
     flex-direction: column;
     background-color: white;
     padding: 20px;
     border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     text-align: center;
     margin: 0 auto;
     box-sizing: border-box;
+    border: 1px solid #76FF8A;
 }
 
 .calculator input,
 .calculator select {
     margin-bottom: 10px;
     padding: 10px;
-    border: 1px solid #ddd;
+    border: 1px solid #d5dcf1;
     border-radius: 4px;
     width: 100%;
+    background-color: white;
 }
 
 .calculator button {
     padding: 10px 20px;
-    background-color: #007bff;
+    background-color: #824ce0;
     color: white;
     border: none;
     border-radius: 4px;
@@ -55,5 +57,7 @@ body {
 .result {
     margin-top: 20px;
     padding: 10px;
-    color: #333;
+    color: black;
 }
+
+/* place holder -----------------------------------------------------------*/
