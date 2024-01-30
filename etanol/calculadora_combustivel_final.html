@@ -1,0 +1,106 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Calculadora de Gasolina X Etanol</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+        }
+        .calculator {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        .calculator input, .calculator select {
+            margin-bottom: 10px;
+            padding: 10px;
+            width: 180px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .calculator button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .calculator button:hover {
+            background-color: #0056b3;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 10px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="calculator">
+        <h2>Calculadora de Gasolina X Etanol</h2>
+        <select id="method" onchange="methodChange()">
+            <option value="1">Método 1 - Sei ambos os preços</option>
+            <option value="2">Método 2 - Só sei preço da gasolina</option>
+        </select>
+        <input type="number" id="etanolPrice" placeholder="Preço do Etanol" />
+        <input type="number" id="gasolinaPrice" placeholder="Preço da Gasolina" />
+        <button onclick="calculate()">Calcular</button>
+        <div id="result" class="result"></div>
+    </div>
+    <script>
+        function calculate() {
+            var method = document.getElementById('method').value;
+            var etanolPrice = document.getElementById('etanolPrice').value;
+            var gasolinaPrice = document.getElementById('gasolinaPrice').value;
+            var result = document.getElementById('result');
+
+            if (method === "1") {
+                if (etanolPrice && gasolinaPrice) {
+                    etanolPrice = parseFloat(etanolPrice);
+                    gasolinaPrice = parseFloat(gasolinaPrice);
+                    var ratio = etanolPrice / (gasolinaPrice * 0.7);
+
+                    if (ratio < 1) {
+                        result.innerHTML = 'Melhor abastecer com Etanol';
+                    } else {
+                        result.innerHTML = 'Melhor abastecer com Gasolina';
+                    }
+                } else {
+                    result.innerHTML = 'Por favor, insira ambos os preços';
+                }
+            } else if (method === "2") {
+                if (gasolinaPrice) {
+                    gasolinaPrice = parseFloat(gasolinaPrice);
+                    var maxEtanolPrice = gasolinaPrice * 0.69;
+                    // Adjusting the calculation to round to two decimal places
+                    maxEtanolPrice = Math.round(maxEtanolPrice * 100) / 100;
+                    result.innerHTML = 'Preço máximo do Etanol para compensar: ' + maxEtanolPrice.toFixed(2);
+                } else {
+                    result.innerHTML = 'Por favor, insira o preço da gasolina';
+                }
+            }
+        }
+
+        function methodChange() {
+            var method = document.getElementById('method').value;
+            var etanolInput = document.getElementById('etanolPrice');
+            if (method === "2") {
+                etanolInput.style.display = 'none';
+            } else {
+                etanolInput.style.display = 'block';
+            }
+        }
+
+        methodChange();
+    </script>
+</body>
+</html>
