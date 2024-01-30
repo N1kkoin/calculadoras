@@ -37,19 +37,22 @@ function calculate() {
 
 function addCurrencySymbol(input) {
     var currentValue = input.value.trim();
-    if (currentValue && !currentValue.startsWith('R$')) {
-        input.value = 'R$ ' + currentValue;
-    } if (!currentValue.startsWith('R$')) {
-        input.value = 'R$ ' + currentValue;
+    if (!currentValue || currentValue === 'R$ ') {
+        input.value = ''; // Set the value to 'R$ ' if it's empty or contains only 'R$ '
+    } else if (!currentValue.startsWith('R$')) {
+        input.value = 'R$ ' + currentValue.replace(/[^\d,]/g, ''); // Allow only numbers and commas
     }
 }
 
+
 function removeCurrencySymbol(input) {
     var currentValue = input.value.trim();
-    if (!currentValue.startsWith('R$')) {
-        input.value = 'R$ ' + currentValue;
+    if (!currentValue.startsWith('R$ ')) {
+        // If the value doesn't start with 'R$ ', remove any non-numeric characters
+        input.value = currentValue.replace(/[^\d.,]/g, '');
     }
 }
+
 
 
 window.onload = function() {

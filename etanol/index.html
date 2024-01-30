@@ -9,14 +9,11 @@
 </head>
 
 <body>
-    <p class="explica">Escolha um dos dois métodos de cálculo. </br>Método 1 se você souber os preços de ambos os
-        combustíveis </br>Método 2 se você souber apenas o preço da gasolina, daí só coloque etanol se o preço for menor
-        do que o calculado.</p>
     <div class="calculator">
         <h2>Calculadora de Gasolina X Etanol</h2>
         <select id="method" onchange="methodChange()">
             <option value="1">Método 1 - Sei ambos os preços</option>
-            <option value="2">Método 2 - Só sei preço da gasolina</option>
+            <option value="2">Método 2 - Só sei preço da gasolina (Regra dos 70%)</option>
         </select>
         <div class="inputsnumeros">
             <input id="etanolPrice" placeholder="Preço do Etanol" />
