@@ -51,7 +51,6 @@ function removeCurrencySymbol(input) {
     }
 }
 
-
 window.onload = function() {
     var inputs = document.querySelectorAll('#etanolPrice, #gasolinaPrice');
     inputs.forEach(function(input) {
