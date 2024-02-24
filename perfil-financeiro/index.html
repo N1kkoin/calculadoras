@@ -99,36 +99,60 @@
         </fieldset>
 
         <!-- Pergunta 3 -->
-        <label for="q3">Pergunta 3: Qual sua opção preferida?</label>
-        <select id="q3" name="q3">
-            <option value="0">Opção P (0 pontos)</option>
-            <option value="5">Opção Q (5 pontos)</option>
-            <option value="26">Opção R (26 pontos)</option>
-        </select>
+        <fieldset>
+            <legend>Pergunta 3: Qual sua opção preferida?</legend>
+            <label>
+                <input type="radio" name="q3" value="0"> Opção X (0 pontos)
+            </label>
+            <label>
+                <input type="radio" name="q3" value="15"> Opção Y (15 pontos)
+            </label>
+            <label>
+                <input type="radio" name="q3" value="16"> Opção Z (16 pontos)
+            </label>
+        </fieldset>
 
         <!-- Pergunta 4 -->
-        <label for="q4">Pergunta 4: Qual sua opção preferida?</label>
-        <select id="q4" name="q4">
-            <option value="0">Opção M (0 pontos)</option>
-            <option value="11">Opção N (11 pontos)</option>
-            <option value="20">Opção O (20 pontos)</option>
-        </select>
+        <fieldset>
+            <legend>Pergunta 4: Qual sua opção preferida?</legend>
+            <label>
+                <input type="radio" name="q4" value="0"> Opção X (0 pontos)
+            </label>
+            <label>
+                <input type="radio" name="q4" value="15"> Opção Y (15 pontos)
+            </label>
+            <label>
+                <input type="radio" name="q4" value="16"> Opção Z (16 pontos)
+            </label>
+        </fieldset>
 
         <!-- Pergunta 5 -->
-        <label for="q5">Pergunta 5: Qual sua opção preferida?</label>
-        <select id="q5" name="q5">
-            <option value="0">Opção D (0 pontos)</option>
-            <option value="14">Opção E (14 pontos)</option>
-            <option value="17">Opção F (17 pontos)</option>
-        </select>
+        <fieldset>
+            <legend>Pergunta 5: Qual sua opção preferida?</legend>
+            <label>
+                <input type="radio" name="q5" value="0"> Opção X (0 pontos)
+            </label>
+            <label>
+                <input type="radio" name="q5" value="15"> Opção Y (15 pontos)
+            </label>
+            <label>
+                <input type="radio" name="q5" value="16"> Opção Z (16 pontos)
+            </label>
+        </fieldset>
 
         <!-- Pergunta 6 -->
-        <label for="q6">Pergunta 6: Qual sua opção preferida?</label>
-        <select id="q6" name="q6">
-            <option value="0">Opção U (0 pontos)</option>
-            <option value="13">Opção V (13 pontos)</option>
-            <option value="18">Opção W (18 pontos)</option>
-        </select>
+        <fieldset>
+            <legend>Pergunta 6: Qual sua opção preferida?</legend>
+            <label>
+                <input type="radio" name="q6" value="0"> Opção X (0 pontos)
+            </label>
+            <label>
+                <input type="radio" name="q6" value="15"> Opção Y (15 pontos)
+            </label>
+            <label>
+                <input type="radio" name="q6" value="16"> Opção Z (16 pontos)
+            </label>
+        </fieldset>
 
         <button type="button" onclick="calcularPontuacao()">Calcular Pontuação</button>
 
@@ -136,13 +160,26 @@
     </form>
     <script>
         function calcularPontuacao() {
+            // Função para obter o valor selecionado de um grupo de botões de rádio
+            function obterValorSelecionado(name) {
+                const elementos = document.getElementsByName(name);
+
+                for (const elemento of elementos) {
+                    if (elemento.checked) {
+                        return parseInt(elemento.value);
+                    }
+                }
+
+                return 0; // Retornar 0 se nenhum botão estiver selecionado
+            }
+
             // Obtém as respostas do formulário
-            const q1 = parseInt(document.getElementById('q1').value);
-            const q2 = parseInt(document.getElementById('q2').value);
-            const q3 = parseInt(document.getElementById('q3').value);
-            const q4 = parseInt(document.getElementById('q4').value);
-            const q5 = parseInt(document.getElementById('q5').value);
-            const q6 = parseInt(document.getElementById('q6').value);
+            const q1 = obterValorSelecionado('q1');
+            const q2 = obterValorSelecionado('q2');
+            const q3 = obterValorSelecionado('q3');
+            const q4 = obterValorSelecionado('q4');
+            const q5 = obterValorSelecionado('q5');
+            const q6 = obterValorSelecionado('q6');
 
             // Adicione mais perguntas conforme necessário e faça a soma total
             const pontuacaoTotal = q1 + q2 + q3 + q4 + q5 + q6;
@@ -161,6 +198,7 @@
             // Exibe o texto na página
             document.getElementById('resultText').textContent = textoExibido;
         }
+
 
     </script>
 
