@@ -69,21 +69,34 @@
     <form id="scoreForm">
         <h2>Formulário de Pontuação</h2>
 
+
         <!-- Pergunta 1 -->
-        <label for="q1">Pergunta 1: Qual sua opção preferida?</label>
-        <select id="q1" name="q1">
-            <option value="0">Opção A (0 pontos)</option>
-            <option value="10">Opção B (10 pontos)</option>
-            <option value="21">Opção C (21 pontos)</option>
-        </select>
+        <fieldset>
+            <legend>Pergunta 1: Qual sua opção preferida?</legend>
+            <label>
+                <input type="radio" name="q1" value="0"> Opção A (0 pontos)
+            </label>
+            <label>
+                <input type="radio" name="q1" value="10"> Opção B (10 pontos)
+            </label>
+            <label>
+                <input type="radio" name="q1" value="21"> Opção C (21 pontos)
+            </label>
+        </fieldset>
 
         <!-- Pergunta 2 -->
-        <label for="q2">Pergunta 2: Qual sua opção preferida?</label>
-        <select id="q2" name="q2">
-            <option value="0">Opção X (0 pontos)</option>
-            <option value="15">Opção Y (15 pontos)</option>
-            <option value="16">Opção Z (16 pontos)</option>
-        </select>
+        <fieldset>
+            <legend>Pergunta 2: Qual sua opção preferida?</legend>
+            <label>
+                <input type="radio" name="q2" value="0"> Opção X (0 pontos)
+            </label>
+            <label>
+                <input type="radio" name="q2" value="15"> Opção Y (15 pontos)
+            </label>
+            <label>
+                <input type="radio" name="q2" value="16"> Opção Z (16 pontos)
+            </label>
+        </fieldset>
 
         <!-- Pergunta 3 -->
         <label for="q3">Pergunta 3: Qual sua opção preferida?</label>
@@ -117,7 +130,6 @@
             <option value="18">Opção W (18 pontos)</option>
         </select>
 
-
         <button type="button" onclick="calcularPontuacao()">Calcular Pontuação</button>
 
         <div class="result" id="resultText"></div>
@@ -127,24 +139,29 @@
             // Obtém as respostas do formulário
             const q1 = parseInt(document.getElementById('q1').value);
             const q2 = parseInt(document.getElementById('q2').value);
+            const q3 = parseInt(document.getElementById('q3').value);
+            const q4 = parseInt(document.getElementById('q4').value);
+            const q5 = parseInt(document.getElementById('q5').value);
+            const q6 = parseInt(document.getElementById('q6').value);
 
             // Adicione mais perguntas conforme necessário e faça a soma total
-            const pontuacaoTotal = q1 + q2;
+            const pontuacaoTotal = q1 + q2 + q3 + q4 + q5 + q6;
 
             // Determina o texto com base na pontuação total
             let textoExibido = '';
 
             if (pontuacaoTotal <= 10) {
-                textoExibido = 'Texto para pontuação até 10 pontos.';
+                textoExibido = `Você marcou ${pontuacaoTotal} pontos. Texto para pontuação até 10 pontos.`;
             } else if (pontuacaoTotal <= 20) {
-                textoExibido = 'Texto para pontuação entre 11 e 20 pontos.';
+                textoExibido = `Você marcou ${pontuacaoTotal} pontos. Texto para pontuação entre 11 e 20 pontos.`;
             } else {
-                textoExibido = 'Texto para pontuação acima de 20 pontos.';
+                textoExibido = `Você marcou ${pontuacaoTotal} pontos. Texto para pontuação acima de 20 pontos.`;
             }
 
             // Exibe o texto na página
             document.getElementById('resultText').textContent = textoExibido;
         }
+
     </script>
 
 </body>
