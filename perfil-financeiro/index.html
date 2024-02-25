@@ -45,17 +45,25 @@
             display: block;
             margin-bottom: 5px;
             color: #555;
-            text-align: left; 
+            text-align: left;
         }
 
         button {
-            background-color: #007bff;
-            color: #fff;
-            padding: 10px 15px;
+            padding: 10px 20px;
+            background-color: #824ce0;
+            color: white;
             border: none;
             border-radius: 4px;
             cursor: pointer;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 500;
+            font-size: medium;
         }
+
+        button:hover {
+            background-color: #262f64;
+        }
+
 
         .button:hover {
             background-color: #0056b3;
@@ -67,12 +75,30 @@
             color: #333;
         }
 
+        /* Estilo para os conjuntos de opções */
         fieldset {
             margin-bottom: 20px;
             padding: 10px;
-            border: 1px solid #ddd;
+            border: 1px solid #d5dcf1;
             border-radius: 6px;
         }
+
+        /* Estilo para os conjuntos de opções não respondidos */
+        fieldset[data-pergunta] {
+            border: 1px solid #d5dcf1;
+        }
+
+        /* Estilo para os conjuntos de opções não respondidos após clicar no botão */
+        fieldset[data-pergunta]:not([data-respondido]) {
+            border: 1px solid #d5dcf1;
+        }
+
+        /* Estilo para os conjuntos de opções não respondidos após clicar no botão */
+        fieldset[data-pergunta]:not([data-respondido]) .radios {
+            border: 1px solid #ff6666;
+        }
+
+
 
         label {
             display: block;
@@ -83,8 +109,15 @@
             margin-right: 5px;
         }
 
-        h2{
-            padding-bottom: 20px;
+        h2 {
+            margin-bottom: 20px;
+        }
+
+        .detalhe {
+            color: #824ce0;
+            text-align: right;
+            margin-top: 5px;
+            font-size: small;
         }
     </style>
 </head>
@@ -92,11 +125,12 @@
 <body>
 
     <form id="scoreForm">
+
         <h2>Teste de Perfil Financeiro</h2>
 
 
         <!-- Pergunta 1 -->
-        <fieldset>
+        <fieldset data-pergunta="q1">
             <legend>Qual a Porcentagem do seu ROM?</legend>
             <label>
                 <input type="radio" name="q1" value="10"> Deu negativo
@@ -122,7 +156,7 @@
         </fieldset>
 
         <!-- Pergunta 2 -->
-        <fieldset>
+        <fieldset data-pergunta="q2">
             <legend>Qual a porcentagem do seu IEM?</legend>
             <label>
                 <input type="radio" name="q2" value="10"> 0%
@@ -148,7 +182,7 @@
         </fieldset>
 
         <!-- Pergunta 3 -->
-        <fieldset>
+        <fieldset data-pergunta="q3">
             <legend>Qual é a porcentagem do seu IPM?</legend>
             <label>
                 <input type="radio" name="q3" value="10"> Menos de 10%
@@ -174,7 +208,7 @@
         </fieldset>
 
         <!-- Pergunta 4 -->
-        <fieldset>
+        <fieldset data-pergunta="q4">
             <legend>Quanto é seu ILE?</legend>
             <label>
                 <input type="radio" name="q4" value="10"> Até 0,10
@@ -200,7 +234,7 @@
         </fieldset>
 
         <!-- Pergunta 5 -->
-        <fieldset>
+        <fieldset data-pergunta="q5">
             <legend>Quanto é seu IAF?</legend>
             <label>
                 <input type="radio" name="q5" value="10"> Até 0,10
@@ -224,8 +258,8 @@
                 <input type="radio" name="q5" value="0"> Acima de 1,0
             </label>
         </fieldset>
-
         <button type="button" onclick="calcularPontuacao()">Calcular Pontuação</button>
+        <div class="detalhe">Seus dados não são salvos</div>
 
         <div class="result" id="resultText"></div>
     </form>
@@ -243,6 +277,39 @@
 
                 return 0; // Retornar 0 se nenhum botão estiver selecionado
             }
+
+            // Função para verificar se todas as perguntas foram respondidas
+            function todasPerguntasRespondidas() {
+                const perguntas = ['q1', 'q2', 'q3', 'q4', 'q5'];
+                let todasRespondidas = true;
+
+                for (const pergunta of perguntas) {
+                    const pontuacao = obterValorSelecionado(pergunta);
+
+                    if (pontuacao === 0) {
+                        todasRespondidas = false;
+                        // Destacar visualmente o fieldset que falta responder
+                        document.querySelector(`fieldset[data-pergunta="${pergunta}"]`).style.border = '1px solid #ff6666';
+                    } else {
+                        // Resetar o estilo do fieldset caso a pergunta tenha sido respondida
+                        document.querySelector(`fieldset[data-pergunta="${pergunta}"]`).style.border = '1px solid #d5dcf1';
+                    }
+                }
+
+                return todasRespondidas;
+            }
+
+            // Verifica se todas as perguntas foram respondidas
+            if (!todasPerguntasRespondidas()) {
+                alert("Por favor, responda todas as perguntas antes de calcular a pontuação.");
+                return;
+            }
+
+            // Restaurar o estilo de todos os fieldsets
+            const fieldsets = document.querySelectorAll('fieldset');
+            fieldsets.forEach(fieldset => {
+                fieldset.style.border = '1px solid #d5dcf1';
+            });
 
             // Obtém as respostas do formulário
             const q1 = obterValorSelecionado('q1');
@@ -268,7 +335,6 @@
             // Exibe o texto na página
             document.getElementById('resultText').textContent = textoExibido;
         }
-
 
     </script>
 
