@@ -327,9 +327,15 @@
             if (pontuacaoTotal <= 10) {
                 textoExibido = `Você marcou ${pontuacaoTotal} pontos. Texto para pontuação até 10 pontos.`;
             } else if (pontuacaoTotal <= 20) {
-                textoExibido = `Você marcou ${pontuacaoTotal} pontos. Texto para pontuação entre 11 e 20 pontos.`;
+                textoExibido = `Você marcou ${pontuacaoTotal} pontos.`;
+            } else if (pontuacaoTotal <= 30) {
+                textoExibido = `Você marcou ${pontuacaoTotal} pontos. `;
+            } else if (pontuacaoTotal <= 40) {
+                textoExibido = `Você marcou ${pontuacaoTotal} pontos. `;
+            } else if (pontuacaoTotal <= 50) {
+                textoExibido = `Você marcou ${pontuacaoTotal} pontos.`;
             } else {
-                textoExibido = `Você marcou ${pontuacaoTotal} pontos. Texto para pontuação acima de 20 pontos.`;
+                textoExibido = `Você marcou ${pontuacaoTotal} pontos. `;
             }
 
             // Exibe o texto na página
