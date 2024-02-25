@@ -324,15 +324,15 @@
             // Determina o texto com base na pontuação total
             let textoExibido = '';
 
-            if (pontuacaoTotal <= 15) {
+            if (pontuacaoTotal <= 5) {
                 textoExibido = `Você marcou ${pontuacaoTotal} pontos. Texto para pontuação até 10 pontos.`;
-            } else if (pontuacaoTotal <= 25) {
+            } else if (pontuacaoTotal <= 15) {
                 textoExibido = `Você marcou ${pontuacaoTotal} pontos.`;
+            } else if (pontuacaoTotal <= 25) {
+                textoExibido = `Você marcou ${pontuacaoTotal} pontos. `;
             } else if (pontuacaoTotal <= 35) {
                 textoExibido = `Você marcou ${pontuacaoTotal} pontos. `;
             } else if (pontuacaoTotal <= 45) {
-                textoExibido = `Você marcou ${pontuacaoTotal} pontos. `;
-            } else if (pontuacaoTotal <= 55) {
                 textoExibido = `Você marcou ${pontuacaoTotal} pontos.`;
             } else {
                 textoExibido = `Você marcou ${pontuacaoTotal} pontos. `;
