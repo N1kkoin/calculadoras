@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadoras</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+
+</head>
+
+<body>
+    <!-- Estrutura das Abas -->
+    <div class="tabs">
+        <button class="tablink" onclick="openTab(event, 'Aba1')">Gasolina X Etanol</button>
+        <button class="tablink" onclick="openTab(event, 'Aba2')">Perfil Financeiro</button>
+        <button class="tablink" onclick="openTab(event, 'Aba3')">Aba 3</button>
+    </div>
+
+    <!-- Conteúdo das Abas -->
+    <div id="Aba1" class="tabcontent">
+        <div class="calculator">
+            <h2>Calculadora de Gasolina X Etanol</h2>
+            <select id="method" onchange="methodChange()">
+                <option value="1">Método 1 - Sei ambos os preços</option>
+                <option value="2">Método 2 - Só sei preço da gasolina (Regra dos 70%)</option>
+            </select>
+            <div class="inputsnumeros">
+                <input id="etanolPrice" placeholder="Preço do Etanol" />
+                <input id="gasolinaPrice" placeholder="Preço da Gasolina" />
+            </div>
+
+            <button onclick="calculate()">Calcular</button>
+            <div id="result" class="result"></div>
+        </div>
+    </div>
+
+    <div id="Aba2" class="tabcontent">
+        <form id="scoreForm">
+
+            <h2>Teste de Perfil Financeiro</h2>
+    
+    
+            <!-- Pergunta 1 -->
+            <fieldset data-pergunta="q1">
+                <legend>Qual a Porcentagem do seu ROM?</legend>
+                <label>
+                    <input type="radio" name="q1" value="11"> Deu negativo
+                </label>
+                <label>
+                    <input type="radio" name="q1" value="9"> Deu 0%
+                </label>
+                <label>
+                    <input type="radio" name="q1" value="7"> Ficou entre 0,1% e 5%
+                </label>
+                <label>
+                    <input type="radio" name="q1" value="5"> Ficou entre 5% e 10%
+                </label>
+                <label>
+                    <input type="radio" name="q1" value="3"> Ficou entre 10% e 20%
+                </label>
+                <label>
+                    <input type="radio" name="q1" value="2"> Ficou entre 20% e 29%
+                </label>
+                <label>
+                    <input type="radio" name="q1" value="1"> Ficou acima de 30%
+                </label>
+            </fieldset>
+    
+            <!-- Pergunta 2 -->
+            <fieldset data-pergunta="q2">
+                <legend>Qual a porcentagem do seu IEM?</legend>
+                <label>
+                    <input type="radio" name="q2" value="11"> 0%
+                </label>
+                <label>
+                    <input type="radio" name="q2" value="9"> Entre 0,1% e 5%
+                </label>
+                <label>
+                    <input type="radio" name="q2" value="7"> Entre 5% e 10%
+                </label>
+                <label>
+                    <input type="radio" name="q2" value="5"> Entre 10% e 15%
+                </label>
+                <label>
+                    <input type="radio" name="q2" value="3"> Entre 15% e 20%
+                </label>
+                <label>
+                    <input type="radio" name="q2" value="2"> Entre 20% e 25%
+                </label>
+                <label>
+                    <input type="radio" name="q2" value="1"> Mais de 25%
+                </label>
+            </fieldset>
+    
+            <!-- Pergunta 3 -->
+            <fieldset data-pergunta="q3">
+                <legend>Qual é a porcentagem do seu IPM?</legend>
+                <label>
+                    <input type="radio" name="q3" value="11"> Menos de 10%
+                </label>
+                <label>
+                    <input type="radio" name="q3" value="9"> Entre 10% e 20%
+                </label>
+                <label>
+                    <input type="radio" name="q3" value="7"> Entre 20% e 40%
+                </label>
+                <label>
+                    <input type="radio" name="q3" value="5"> Entre 40% e 60%
+                </label>
+                <label>
+                    <input type="radio" name="q3" value="3"> Entre 60% e 80%
+                </label>
+                <label>
+                    <input type="radio" name="q3" value="2"> Entre 80% e 100%
+                </label>
+                <label>
+                    <input type="radio" name="q3" value="1"> Mais de 100%
+                </label>
+            </fieldset>
+    
+            <!-- Pergunta 4 -->
+            <fieldset data-pergunta="q4">
+                <legend>Quanto é seu ILE?</legend>
+                <label>
+                    <input type="radio" name="q4" value="11"> Até 0,10
+                </label>
+                <label>
+                    <input type="radio" name="q4" value="9"> Entre 0,10 e 0,20
+                </label>
+                <label>
+                    <input type="radio" name="q4" value="7"> Entre 0,20 e 0,40
+                </label>
+                <label>
+                    <input type="radio" name="q4" value="5"> Entre 0,40 e 0,60
+                </label>
+                <label>
+                    <input type="radio" name="q4" value="3"> Entre 0,60 e 0,80
+                </label>
+                <label>
+                    <input type="radio" name="q4" value="2"> Entre 0,80 e 1,0
+                </label>
+                <label>
+                    <input type="radio" name="q4" value="1"> Acima de 1,0
+                </label>
+            </fieldset>
+    
+            <!-- Pergunta 5 -->
+            <fieldset data-pergunta="q5">
+                <legend>Quanto é seu IAF?</legend>
+                <label>
+                    <input type="radio" name="q5" value="11"> Até 0,10
+                </label>
+                <label>
+                    <input type="radio" name="q5" value="9"> Entre 0,10 e 0,20
+                </label>
+                <label>
+                    <input type="radio" name="q5" value="7"> Entre 0,20 e 0,40
+                </label>
+                <label>
+                    <input type="radio" name="q5" value="5"> Entre 0,40 e 0,60
+                </label>
+                <label>
+                    <input type="radio" name="q5" value="3"> Entre 0,60 e 0,80
+                </label>
+                <label>
+                    <input type="radio" name="q5" value="2"> Entre 0,80 e 1,0
+                </label>
+                <label>
+                    <input type="radio" name="q5" value="1"> Acima de 1,0
+                </label>
+            </fieldset>
+            <button type="button" onclick="calcularPontuacao()">Calcular Pontuação</button>
+            <div class="detalhe">Seus dados não são salvos</div>
+    
+            <div class="financeiroresult" id="resultText"></div>
+        </form>
+    </div>
+
+    <div id="Aba3" class="tabcontent">
+        <h3>Aba 3</h3>
+        <p>Conteúdo da Aba 3.</p>
+    </div>
+    <script src="script.js"></script>
+
+</body>
+
+</html>
