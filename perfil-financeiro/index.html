@@ -71,8 +71,14 @@
 
         .result {
             margin-top: 20px;
+        }
+
+        .titulodoresultado{
+            margin-top: 20px;
             font-weight: bold;
             color: #333;
+            font-size: larger;
+            margin-bottom: 10px;
         }
 
         /* Estilo para os conjuntos de opções */
@@ -118,6 +124,7 @@
             text-align: right;
             margin-top: 5px;
             font-size: small;
+            margin-bottom: -20px;
         }
     </style>
 </head>
@@ -325,21 +332,33 @@
             let textoExibido = '';
 
             if (pontuacaoTotal <= 5) {
-                textoExibido = `Você marcou ${pontuacaoTotal} pontos. Texto para pontuação até 10 pontos.`;
+                textoExibido = `<div class="titulodoresultado"> Você marcou ${pontuacaoTotal}/55 pontos. </div> Texto para pontuação até 5 pontos.`;
+            } else if (pontuacaoTotal <= 10) {
+                textoExibido = `<div class="titulodoresultado"> Você marcou ${pontuacaoTotal}/55 pontos. </div>  Texto para pontuação até 10 pontos.`;
             } else if (pontuacaoTotal <= 15) {
-                textoExibido = `Você marcou ${pontuacaoTotal} pontos.`;
+                textoExibido = `<div class="titulodoresultado"> Você marcou ${pontuacaoTotal}/55 pontos. </div>  Texto para pontuação até 15 pontos.`;
+            } else if (pontuacaoTotal <= 20) {
+                textoExibido = `<div class="titulodoresultado"> Você marcou ${pontuacaoTotal}/55 pontos. </div>  Texto para pontuação até 20 pontos.`;
             } else if (pontuacaoTotal <= 25) {
-                textoExibido = `Você marcou ${pontuacaoTotal} pontos. `;
+                textoExibido = `<div class="titulodoresultado"> Você marcou ${pontuacaoTotal}/55 pontos. </div>  Texto para pontuação até 25 pontos.`;
+            } else if (pontuacaoTotal <= 30) {
+                textoExibido = `<div class="titulodoresultado"> Você marcou ${pontuacaoTotal}/55 pontos. </div>  Texto para pontuação até 30 pontos.`;
             } else if (pontuacaoTotal <= 35) {
-                textoExibido = `Você marcou ${pontuacaoTotal} pontos. `;
+                textoExibido = `<div class="titulodoresultado"> Você marcou ${pontuacaoTotal}/55 pontos. </div>  Texto para pontuação até 35 pontos.`;
+            } else if (pontuacaoTotal <= 40) {
+                textoExibido = `<div class="titulodoresultado"> Você marcou ${pontuacaoTotal}/55 pontos. </div>  Texto para pontuação até 40 pontos.`;
             } else if (pontuacaoTotal <= 45) {
-                textoExibido = `Você marcou ${pontuacaoTotal} pontos.`;
+                textoExibido = `<div class="titulodoresultado"> Você marcou ${pontuacaoTotal}/55 pontos. </div>  Texto para pontuação até 45 pontos.`;
+            } else if (pontuacaoTotal <= 50) {
+                textoExibido = `<div class="titulodoresultado"> Você marcou ${pontuacaoTotal}/55 pontos. </div>  Texto para pontuação até 50 pontos.`;
+            } else if (pontuacaoTotal <= 54) {
+                textoExibido = `<div class="titulodoresultado"> Você marcou ${pontuacaoTotal}/55 pontos. </div>  Texto para pontuação até 54 pontos.`;
             } else {
-                textoExibido = `Você marcou ${pontuacaoTotal} pontos. `;
-            }
+                textoExibido = `<div class="titulodoresultado"> Você marcou ${pontuacaoTotal}/55 pontos. </div>  </br>Texto para pontuação de 55 pontos.`;
+            };
 
             // Exibe o texto na página
-            document.getElementById('resultText').textContent = textoExibido;
+            document.getElementById('resultText').innerHTML = textoExibido;
         }
 
     </script>
