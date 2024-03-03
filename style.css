@@ -22,7 +22,7 @@ body {
   
   /* Estilo do conteúdo das abas */
   .tabcontent {
-    padding-top: 50px;
+    padding-top: 30px;
     display: none;
     border-top: none;
   }
