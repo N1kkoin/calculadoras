@@ -113,7 +113,7 @@ function methodChange() {
 methodChange();
 
 
-/* perfil financeiro --------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* auto-avaliação --------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 
 function calcularPontuacao() {
     // Função para obter o valor selecionado de um grupo de botões de rádio
@@ -131,7 +131,7 @@ function calcularPontuacao() {
 
     // Função para verificar se todas as perguntas foram respondidas
     function todasPerguntasRespondidas() {
-        const perguntas = ['q1', 'q2', 'q3', 'q4', 'q5'];
+        const perguntas = ['q1', 'q2', 'q3', 'q4', 'q5', 'q6', 'q7', 'q8', 'q9'];
         let todasRespondidas = true;
 
         for (const pergunta of perguntas) {
@@ -168,38 +168,55 @@ function calcularPontuacao() {
     const q3 = obterValorSelecionado('q3');
     const q4 = obterValorSelecionado('q4');
     const q5 = obterValorSelecionado('q5');
+    const q6 = obterValorSelecionado('q6');
+    const q7 = obterValorSelecionado('q7');
+    const q8 = obterValorSelecionado('q8');
+    const q9 = obterValorSelecionado('q9');
+
+
+
 
     // Adicione mais perguntas conforme necessário e faça a soma total
-    const pontuacaoTotal = q1 + q2 + q3 + q4 + q5;
+    const pontuacaoTotal = q1 + q2 + q3 + q4 + q5 + q6 + q7 + q8 + q9;
 
     // Determina o texto com base na pontuação total
     let textoExibido = '';
-
-    if (pontuacaoTotal <= 5) {
-        textoExibido = `<div class="titulodoresultado"> Você marcou ${pontuacaoTotal}/55 pontos. </div> Texto para pontuação até 5 pontos.`;
-    } else if (pontuacaoTotal <= 10) {
-        textoExibido = `<div class="titulodoresultado"> Você marcou ${pontuacaoTotal}/55 pontos. </div>  Texto para pontuação até 10 pontos.`;
-    } else if (pontuacaoTotal <= 15) {
-        textoExibido = `<div class="titulodoresultado"> Você marcou ${pontuacaoTotal}/55 pontos. </div>  Texto para pontuação até 15 pontos.`;
-    } else if (pontuacaoTotal <= 20) {
-        textoExibido = `<div class="titulodoresultado"> Você marcou ${pontuacaoTotal}/55 pontos. </div>  Texto para pontuação até 20 pontos.`;
-    } else if (pontuacaoTotal <= 25) {
-        textoExibido = `<div class="titulodoresultado"> Você marcou ${pontuacaoTotal}/55 pontos. </div>  Texto para pontuação até 25 pontos.`;
-    } else if (pontuacaoTotal <= 30) {
-        textoExibido = `<div class="titulodoresultado"> Você marcou ${pontuacaoTotal}/55 pontos. </div>  Texto para pontuação até 30 pontos.`;
-    } else if (pontuacaoTotal <= 35) {
-        textoExibido = `<div class="titulodoresultado"> Você marcou ${pontuacaoTotal}/55 pontos. </div>  Texto para pontuação até 35 pontos.`;
-    } else if (pontuacaoTotal <= 40) {
-        textoExibido = `<div class="titulodoresultado"> Você marcou ${pontuacaoTotal}/55 pontos. </div>  Texto para pontuação até 40 pontos.`;
-    } else if (pontuacaoTotal <= 45) {
-        textoExibido = `<div class="titulodoresultado"> Você marcou ${pontuacaoTotal}/55 pontos. </div>  Texto para pontuação até 45 pontos.`;
-    } else if (pontuacaoTotal <= 50) {
-        textoExibido = `<div class="titulodoresultado"> Você marcou ${pontuacaoTotal}/55 pontos. </div>  Texto para pontuação até 50 pontos.`;
-    } else if (pontuacaoTotal <= 54) {
-        textoExibido = `<div class="titulodoresultado"> Você marcou ${pontuacaoTotal}/55 pontos. </div>  Texto para pontuação até 54 pontos.`;
+    if (pontuacaoTotal <= 13) {
+        textoExibido = `<div class="titulodoresultado"> Você marcou ${pontuacaoTotal}/207 pontos. </div> Texto para pontuação até 13 pontos.`;
+    } else if (pontuacaoTotal <= 26) {
+        textoExibido = `<div class="titulodoresultado"> Você marcou ${pontuacaoTotal}/207 pontos. </div>  Texto para pontuação até 26 pontos.`;
+    } else if (pontuacaoTotal <= 39) {
+        textoExibido = `<div class="titulodoresultado"> Você marcou ${pontuacaoTotal}/207 pontos. </div>  Texto para pontuação até 39 pontos.`;
+    } else if (pontuacaoTotal <= 52) {
+        textoExibido = `<div class="titulodoresultado"> Você marcou ${pontuacaoTotal}/207 pontos. </div>  Texto para pontuação até 52 pontos.`;
+    } else if (pontuacaoTotal <= 65) {
+        textoExibido = `<div class="titulodoresultado"> Você marcou ${pontuacaoTotal}/207 pontos. </div>  Texto para pontuação até 65 pontos.`;
+    } else if (pontuacaoTotal <= 78) {
+        textoExibido = `<div class="titulodoresultado"> Você marcou ${pontuacaoTotal}/207 pontos. </div>  Texto para pontuação até 78 pontos.`;
+    } else if (pontuacaoTotal <= 91) {
+        textoExibido = `<div class="titulodoresultado"> Você marcou ${pontuacaoTotal}/207 pontos. </div>  Texto para pontuação até 91 pontos.`;
+    } else if (pontuacaoTotal <= 104) {
+        textoExibido = `<div class="titulodoresultado"> Você marcou ${pontuacaoTotal}/207 pontos. </div>  Texto para pontuação até 104 pontos.`;
+    } else if (pontuacaoTotal <= 117) {
+        textoExibido = `<div class="titulodoresultado"> Você marcou ${pontuacaoTotal}/207 pontos. </div>  Texto para pontuação até 117 pontos.`;
+    } else if (pontuacaoTotal <= 130) {
+        textoExibido = `<div class="titulodoresultado"> Você marcou ${pontuacaoTotal}/207 pontos. </div>  Texto para pontuação até 130 pontos.`;
+    } else if (pontuacaoTotal <= 143) {
+        textoExibido = `<div class="titulodoresultado"> Você marcou ${pontuacaoTotal}/207 pontos. </div>  Texto para pontuação até 143 pontos.`;
+    } else if (pontuacaoTotal <= 156) {
+        textoExibido = `<div class="titulodoresultado"> Você marcou ${pontuacaoTotal}/207 pontos. </div>  Texto para pontuação até 156 pontos.`;
+    } else if (pontuacaoTotal <= 169) {
+        textoExibido = `<div class="titulodoresultado"> Você marcou ${pontuacaoTotal}/207 pontos. </div>  Texto para pontuação até 169 pontos.`;
+    } else if (pontuacaoTotal <= 182) {
+        textoExibido = `<div class="titulodoresultado"> Você marcou ${pontuacaoTotal}/207 pontos. </div>  Texto para pontuação até 182 pontos.`;
+    } else if (pontuacaoTotal <= 195) {
+        textoExibido = `<div class="titulodoresultado"> Você marcou ${pontuacaoTotal}/207 pontos. </div>  Texto para pontuação até 195 pontos.`;
+    } else if (pontuacaoTotal <= 206) {
+        textoExibido = `<div class="titulodoresultado"> Você marcou ${pontuacaoTotal}/207 pontos. </div>  Texto para pontuação até 206 pontos.`;
     } else {
-        textoExibido = `<div class="titulodoresultado"> Você marcou ${pontuacaoTotal}/55 pontos. </div>  </br>Texto para pontuação de 55 pontos.`;
-    };
+        textoExibido = `<div class="titulodoresultado"> Você marcou ${pontuacaoTotal}/207 pontos. </div>  </br>Texto para pontuação de 207.`;
+    }
+
 
     // Exibe o texto na página
     document.getElementById('resultText').innerHTML = textoExibido;
