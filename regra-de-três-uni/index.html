@@ -14,17 +14,9 @@
         .parent {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            grid-template-rows: repeat(3, 1fr);
+            grid-template-rows: repeat(4, 1fr);
             grid-column-gap: 0px;
             grid-row-gap: 0px;
-            width: 100%;
-
-        }
-
-        .parent span {
-            font-size: small;
-            color: #e36129;
-            font-weight: bold;
         }
 
         .div1 {
@@ -33,7 +25,6 @@
 
         .div2 {
             grid-area: 1 / 2 / 2 / 3;
-
         }
 
         .div3 {
@@ -41,34 +32,47 @@
         }
 
         .div4 {
-            grid-area: 2 / 1 / 3 / 4;
-
+            grid-area: 3 / 1 / 4 / 2;
         }
+
+        .div5 {
+            grid-area: 3 / 2 / 4 / 3;
+        }
+
+        .div6 {
+            grid-area: 3 / 3 / 4 / 4;
+        }
+
+        .div7 {
+            grid-area: 2 / 1 / 3 / 2;
+        }
+
+        .div8 {
+            grid-area: 2 / 2 / 3 / 3;
+        }
+
+        .div9 {
+            grid-area: 2 / 3 / 3 / 4;
+        }
+
+        .div10 {
+            grid-area: 4 / 3 / 5 / 4;
+        }
+
+        .parent span {
+            font-size: small;
+            color: #e36129;
+            font-weight: bold;
+        }
+
+
 
         .div4 span {
             color: #ccc;
             font-size: 12px;
         }
 
-        .div5 {
-            grid-area: 3 / 1 / 4 / 2;
-        }
 
-        .div6 {
-            grid-area: 3 / 2 / 4 / 3;
-        }
-
-        .div7 {
-            grid-area: 3 / 3 / 4 / 4;
-        }
-
-        .div2,
-        .div4,
-        .div6 {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
 
         input[type="text"] {
             padding: 8px;
@@ -104,41 +108,60 @@
             border-radius: 15px;
         }
 
-        .a, .b, .c, .x, .resto {
+        .a,
+        .b,
+        .c,
+        .x,
+        .resto {
             display: flex;
             height: fit-content;
+
         }
     </style>
 </head>
 
 <body>
-    <div style="max-width: 900px;">
+    <div style="max-width: 600px;">
         <div class="calculadora-caixa">
             <div class="parent">
-                <div class="a">
-                    <input type="text" id="a_hundreds" placeholder="Centenas de A" oninput="calculatecdu()">
-                    <input type="text" id="a_tens" placeholder="Dezenas de A" oninput="calculatecdu()">
-                    <input type="text" id="a_units" placeholder="Unidades de A" oninput="calculatecdu()">
+                <div class="div1">
+                    A
+                    <div class="a">
+                        <input type="text" id="a_hundreds" placeholder="C" oninput="calculatecdu()">
+                        <input type="text" id="a_tens" placeholder="D " oninput="calculatecdu()">
+                        <input type="text" id="a_units" placeholder="U" oninput="calculatecdu()">
+                    </div>
                 </div>
-                <div class="b">
-                    <input type="text" id="b_hundreds" placeholder="Centenas de B" oninput="calculatecdu()">
-                    <input type="text" id="b_tens" placeholder="Dezenas de B" oninput="calculatecdu()">
-                    <input type="text" id="b_units" placeholder="Unidades de B" oninput="calculatecdu()">
+                <div class="div2">Está para</div>
+                <div class="div3">
+                    B
+                    <div class="b">
+                        <input type="text" id="b_hundreds" placeholder="C" oninput="calculatecdu()">
+                        <input type="text" id="b_tens" placeholder="D" oninput="calculatecdu()">
+                        <input type="text" id="b_units" placeholder="U" oninput="calculatecdu()">
+                    </div>
                 </div>
-                <div class="c">
-                    <input type="text" id="c_hundreds" placeholder="Centenas de C" oninput="calculatecdu()">
-                    <input type="text" id="c_tens" placeholder="Dezenas de C" oninput="calculatecdu()">
-                    <input type="text" id="c_units" placeholder="Unidades de C" oninput="calculatecdu()">
+                <div class="div4">
+                    C
+                    <div class="c">
+                        <input type="text" id="c_hundreds" placeholder="C" oninput="calculatecdu()">
+                        <input type="text" id="c_tens" placeholder="D" oninput="calculatecdu()">
+                        <input type="text" id="c_units" placeholder="U" oninput="calculatecdu()">
+                    </div>
                 </div>
-                <div class="x">
-                    <input type="text" id="result_hundreds" placeholder="Centenas de X" readonly>
-                    <input type="text" id="result_tens" placeholder="Dezenas de X" readonly>
-                    <input type="text" id="result_units" placeholder="Unidades de X" readonly>
+                <div class="div6">
+                    <div class="x">
+                        <input type="text" id="result_hundreds" placeholder="C" readonly>
+                        <input type="text" id="result_tens" placeholder="D" readonly>
+                        <input type="text" id="result_units" placeholder="U" readonly>
+                    </div>
                 </div>
-                <div class="resto">
-                    <input type="text" id="rest_hundreds" placeholder="Centenas do Resto" readonly>
-                    <input type="text" id="rest_tens" placeholder="Dezenas do Resto" readonly>
-                    <input type="text" id="rest_units" placeholder="Unidades do Resto" readonly>
+                <div class="div10">
+                    <div class="resto">
+                        <input type="text" id="rest_hundreds" placeholder="C" readonly>
+                        <input type="text" id="rest_tens" placeholder="D" readonly>
+                        <input type="text" id="rest_units" placeholder="U" readonly>
+                    </div>
                 </div>
             </div>
         </div>
@@ -147,61 +170,61 @@
 
 
 
-    <p class="incompleto" id="mensagem-cdu"></p>
-    <script>
-        function calculate() {
-            var a = parseFloat(document.getElementById('a').value);
-            var b = parseFloat(document.getElementById('b').value);
-            var c = parseFloat(document.getElementById('c').value);
+        <p class="incompleto" id="mensagem-cdu"></p>
+        <script>
+            function calculate() {
+                var a = parseFloat(document.getElementById('a').value);
+                var b = parseFloat(document.getElementById('b').value);
+                var c = parseFloat(document.getElementById('c').value);
 
-            if (!isNaN(a) && !isNaN(b) && !isNaN(c)) {
-                var resultado = (b * c) / a;
-                document.getElementById('resultado').value = resultado.toFixed(2);
-                document.getElementById('mensagem').innerText = "";
-            } else {
-                document.getElementById('resultado').value = "";
-                document.getElementById('mensagem').innerText = "Preencha os campos";
+                if (!isNaN(a) && !isNaN(b) && !isNaN(c)) {
+                    var resultado = (b * c) / a;
+                    document.getElementById('resultado').value = resultado.toFixed(2);
+                    document.getElementById('mensagem').innerText = "";
+                } else {
+                    document.getElementById('resultado').value = "";
+                    document.getElementById('mensagem').innerText = "Preencha os campos";
+                }
             }
-        }
 
-        function calculatecdu() {
-            var a = 100 * parseFloat(document.getElementById('a_hundreds').value || 0) +
-                10 * parseFloat(document.getElementById('a_tens').value || 0) +
-                parseFloat(document.getElementById('a_units').value || 0);
-            var b = 100 * parseFloat(document.getElementById('b_hundreds').value || 0) +
-                10 * parseFloat(document.getElementById('b_tens').value || 0) +
-                parseFloat(document.getElementById('b_units').value || 0);
-            var c = 100 * parseFloat(document.getElementById('c_hundreds').value || 0) +
-                10 * parseFloat(document.getElementById('c_tens').value || 0) +
-                parseFloat(document.getElementById('c_units').value || 0);
+            function calculatecdu() {
+                var a = 100 * parseFloat(document.getElementById('a_hundreds').value || 0) +
+                    10 * parseFloat(document.getElementById('a_tens').value || 0) +
+                    parseFloat(document.getElementById('a_units').value || 0);
+                var b = 100 * parseFloat(document.getElementById('b_hundreds').value || 0) +
+                    10 * parseFloat(document.getElementById('b_tens').value || 0) +
+                    parseFloat(document.getElementById('b_units').value || 0);
+                var c = 100 * parseFloat(document.getElementById('c_hundreds').value || 0) +
+                    10 * parseFloat(document.getElementById('c_tens').value || 0) +
+                    parseFloat(document.getElementById('c_units').value || 0);
 
-            if (a && b && c) {
-                var resultado = (b * c) / a;
-                var resto = (b * c) % a;
+                if (a && b && c) {
+                    var resultado = (b * c) / a;
+                    var resto = (b * c) % a;
 
-                // Calculate hundreds, tens, and units for the result
-                document.getElementById('result_hundreds').value = Math.floor(resultado / 100);
-                document.getElementById('result_tens').value = Math.floor((resultado % 100) / 10);
-                document.getElementById('result_units').value = Math.floor(resultado % 10);
+                    // Calculate hundreds, tens, and units for the result
+                    document.getElementById('result_hundreds').value = Math.floor(resultado / 100);
+                    document.getElementById('result_tens').value = Math.floor((resultado % 100) / 10);
+                    document.getElementById('result_units').value = Math.floor(resultado % 10);
 
-                // Calculate hundreds, tens, and units for the remainder
-                document.getElementById('rest_hundreds').value = Math.floor(resto / 100);
-                document.getElementById('rest_tens').value = Math.floor((resto % 100) / 10);
-                document.getElementById('rest_units').value = Math.floor(resto % 10);
+                    // Calculate hundreds, tens, and units for the remainder
+                    document.getElementById('rest_hundreds').value = Math.floor(resto / 100);
+                    document.getElementById('rest_tens').value = Math.floor((resto % 100) / 10);
+                    document.getElementById('rest_units').value = Math.floor(resto % 10);
 
-                document.getElementById('mensagem').innerText = "";
-            } else {
-                document.getElementById('result_hundreds').value = "";
-                document.getElementById('result_tens').value = "";
-                document.getElementById('result_units').value = "";
-                document.getElementById('rest_hundreds').value = "";
-                document.getElementById('rest_tens').value = "";
-                document.getElementById('rest_units').value = "";
-                document.getElementById('mensagem-cdu').innerText = "Preencha todos os campos corretamente.";
+                    document.getElementById('mensagem').innerText = "";
+                } else {
+                    document.getElementById('result_hundreds').value = "";
+                    document.getElementById('result_tens').value = "";
+                    document.getElementById('result_units').value = "";
+                    document.getElementById('rest_hundreds').value = "";
+                    document.getElementById('rest_tens').value = "";
+                    document.getElementById('rest_units').value = "";
+                    document.getElementById('mensagem-cdu').innerText = "Preencha todos os campos corretamente.";
+                }
             }
-        }
 
-    </script>
+        </script>
 </body>
 
 </html>
