@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <title>Calculadora de Regra de Três Avançada</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: "Roboto", sans-serif; }
+        .parent { display: grid; grid-template-columns: repeat(4, 1fr); grid-column-gap: 0px; width: 100%; }
+        .div1, .div3, .div5, .div7 { grid-column: span 3; }
+        .div2, .div4, .div6 { display: flex; align-items: center; justify-content: center; }
+        input[type="text"] { padding: 8px; border: 1px solid #ccc; border-radius: 5px; font-weight: bold; width: 100%; box-sizing: border-box; }
+        input[type="text"]:focus { outline: none; border-color: #e36129; }
+        input[type="text"][readonly] { background-color: #f2f2f2; }
+        .calculadora-caixa { display: flex; flex-direction: column; border: 2px solid #ccc; padding: 20px; border-radius: 15px; }
+        .incompleto { color: #e36129; margin-top: 10px; text-align: center; font-size: 12px; }
+    </style>
+</head>
+<body>
+    <div style="max-width: 600px;">
+        <div class="calculadora-caixa">
+            <div class="parent">
+                <div class="div1"><input type="text" id="a_hundreds" placeholder="Centenas de A" oninput="calculatecdu()"></div>
+                <div class="div1"><input type="text" id="a_tens" placeholder="Dezenas de A" oninput="calculatecdu()"></div>
+                <div class="div1"><input type="text" id="a_units" placeholder="Unidades de A" oninput="calculatecdu()"></div>
+                <div class="div2"><span>ESTÁ PARA</span></div>
+                <div class="div3"><input type="text" id="b_hundreds" placeholder="Centenas de B" oninput="calculatecdu()"></div>
+                <div class="div3"><input type="text" id="b_tens" placeholder="Dezenas de B" oninput="calculatecdu()"></div>
+                <div class="div3"><input type="text" id="b_units" placeholder="Unidades de B" oninput="calculatecdu()"></div>
+                <div class="div4"><span>ASSIM COMO</span></div>
+                <div class="div5"><input type="text" id="c_hundreds" placeholder="Centenas de C" oninput="calculatecdu()"></div>
+                <div class="div5"><input type="text" id="c_tens" placeholder="Dezenas de C" oninput="calculatecdu()"></div>
+                <div the="div5"><input type="text" id="c_units" placeholder="Unidades de C" oninput="calculatecdu()"></div>
+                <div><span>ESTÁ PARA</span></div>
+                <div><input type="text" id="result_hundreds" placeholder="Centenas de X" readonly></div>
+                <div><input type="text" id="result_tens" placeholder="Dezenas de X" readonly></div>
+                <div><input type="text" id="result_units" placeholder="Unidades de X" readonly></div>
+                <div><span>RESTO DA DIVISÃO</span></div>
+                <div><input type="text" id="rest_hundreds" placeholder="Centenas do Resto" readonly></div>
+                <div><input type="text" id="rest_tens" placeholder="Dezenas do Resto" readonly></div>
+                <div><input type="text" id="rest_units" placeholder="Unidades do Resto" readonly></div>
+        
+            </div>
+        </div>
+        <p class="incompleto" id="mensagem-cdu"></p>
+    </div>
+    <script>
+        function calculatecdu() {
+            var a = 100 * parseFloat(document.getElementById('a_hundreds').value || 0) +
+                    10 * parseFloat(document.getElementById('a_tens').value || 0) +
+                    parseFloat(document.getElementById('a_units').value || 0);
+            var b = 100 * parseFloat(document.getElementById('b_hundreds').value || 0) +
+                    10 * parseFloat(document.getElementById('b_tens').value || 0) +
+                    parseFloat(document.getElementById('b_units').value || 0);
+            var c = 100 * parseFloat(document.getElementById('c_hundreds').value || 0) +
+                    10 * parseFloat(document.getElementById('c_tens').value || 0) +
+                    parseFloat(document.getElementById('c_units').value || 0);
+
+            if (a && b && c) {
+                var resultado = (b * c) / a;
+                var resto = (b * c) % a;
+
+                // Calculate hundreds, tens, and units for the result
+                document.getElementById('result_hundreds').value = Math.floor(resultado / 100);
+                document.getElementById('result_tens').value = Math.floor((resultado % 100) / 10);
+                document.getElementById('result_units').value = Math.floor(resultado % 10);
+
+                // Calculate hundreds, tens, and units for the remainder
+                document.getElementById('rest_hundreds').value = Math.floor(resto / 100);
+                document.getElementById('rest_tens').value = Math.floor((resto % 100) / 10);
+                document.getElementById('rest_units').value = Math.floor(resto % 10);
+
+                document.getElementById('mensagem').innerText = "";
+            } else {
+                document.getElementById('result_hundreds').value = "";
+                document.getElementById('result_tens').value = "";
+                document.getElementById('result_units').value = "";
+                document.getElementById('rest_hundreds').value = "";
+                document.getElementById('rest_tens').value = "";
+                document.getElementById('rest_units').value = "";
+                document.getElementById('mensagem-cdu').innerText = "Preencha todos os campos corretamente.";
+            }
+        }
+    </script>
+</body>
+</html>
