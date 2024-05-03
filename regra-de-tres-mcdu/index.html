@@ -136,6 +136,10 @@
             background-color: #f2f2f2;
             display: flex;
             margin-bottom: 5px;
+            font-size: small;
+            padding: 4px 10px;
+            border-radius: 5px;
+            justify-content: center;
         }
     </style>
 </head>
@@ -189,7 +193,7 @@
                 </div>
                 <div class="div8 assim">Assim como</div>
                 <div class="div10">
-                    RESTO DA DIVISÃO X
+                    <span class="abcx">RESTO DA DIVISÃO X</span>
                     <div class="resto">
 
                         <input type="number" id="rest_hundreds" placeholder="C" readonly>
@@ -205,7 +209,29 @@
     <div>
         <script>
             function calculatecdu() {
+                var div1Value = parseInt(document.getElementById('a_hundreds').value || 0) * 100 +
+                    parseInt(document.getElementById('a_tens').value || 0) * 10 +
+                    parseInt(document.getElementById('a_units').value || 0);
 
+                var div3Value = parseInt(document.getElementById('b_hundreds').value || 0) * 100 +
+                    parseInt(document.getElementById('b_tens').value || 0) * 10 +
+                    parseInt(document.getElementById('b_units').value || 0);
+
+                if (div1Value && div3Value) {
+                    if (div3Value >= div1Value) {
+                        // Mostrar aviso
+                        document.getElementById('mensagem-cdu').innerText = "O valor de B deve ser menor que o valor de A.";
+
+                        // Limpar div3 após 1 segundo
+                        setTimeout(function () {
+                            document.getElementById('b_hundreds').value = "";
+                            document.getElementById('b_tens').value = "";
+                            document.getElementById('b_units').value = "";
+                            document.getElementById('mensagem-cdu').innerText = ""; // Limpar mensagem de aviso
+                        }, 1000);
+                        return;
+                    }
+                }
 
                 var a = 100 * parseFloat(document.getElementById('a_hundreds').value || 0) +
                     10 * parseFloat(document.getElementById('a_tens').value || 0) +
