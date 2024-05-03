@@ -14,9 +14,11 @@
         .parent {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            grid-template-rows: repeat(4, 1fr);
+            grid-row: 2;
             grid-column-gap: 0px;
             grid-row-gap: 0px;
+            width: auto;
+            height: auto;
         }
 
         .div1 {
@@ -25,6 +27,9 @@
 
         .div2 {
             grid-area: 1 / 2 / 2 / 3;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
         .div3 {
@@ -37,6 +42,9 @@
 
         .div5 {
             grid-area: 3 / 2 / 4 / 3;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
         .div6 {
@@ -49,6 +57,9 @@
 
         .div8 {
             grid-area: 2 / 2 / 3 / 3;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
         .div9 {
@@ -56,20 +67,23 @@
         }
 
         .div10 {
+            padding-top: 10px;
             grid-area: 4 / 3 / 5 / 4;
+
         }
 
-        .parent span {
+        .estapara {
             font-size: small;
             color: #e36129;
             font-weight: bold;
+            text-transform: uppercase;
         }
 
-
-
-        .div4 span {
+        .assim {
             color: #ccc;
             font-size: 12px;
+            text-transform: uppercase;
+            font-weight: bold;
         }
 
 
@@ -115,7 +129,13 @@
         .resto {
             display: flex;
             height: fit-content;
+            gap: 5px;
+        }
 
+        .abcx{
+            background-color: #f2f2f2;
+            display: flex;
+            margin-bottom: 5px;
         }
     </style>
 </head>
@@ -132,7 +152,7 @@
                         <input type="text" id="a_units" placeholder="U" oninput="calculatecdu()">
                     </div>
                 </div>
-                <div class="div2">Está para</div>
+                <div class="div2 estapara">Está para</div>
                 <div class="div3">
                     B
                     <div class="b">
@@ -149,15 +169,20 @@
                         <input type="text" id="c_units" placeholder="U" oninput="calculatecdu()">
                     </div>
                 </div>
+                <div class="div5 estapara">Está para</div>
                 <div class="div6">
+                    <span class="abcx">X</span>
                     <div class="x">
                         <input type="text" id="result_hundreds" placeholder="C" readonly>
                         <input type="text" id="result_tens" placeholder="D" readonly>
                         <input type="text" id="result_units" placeholder="U" readonly>
                     </div>
                 </div>
+                <div class="div8 assim">Assim como</div>
                 <div class="div10">
+                    RESTO DA DIVISÃO X
                     <div class="resto">
+                        
                         <input type="text" id="rest_hundreds" placeholder="C" readonly>
                         <input type="text" id="rest_tens" placeholder="D" readonly>
                         <input type="text" id="rest_units" placeholder="U" readonly>
