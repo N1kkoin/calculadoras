@@ -259,7 +259,26 @@
                     }
                 }
             }
-            
+
+
+            window.onload = function () {
+    // Seleciona todos os inputs
+    var inputs = document.querySelectorAll('input[type="number"]');
+    
+    // Adiciona um evento keyup a cada input
+    inputs.forEach(function(input, index) {
+        input.addEventListener('keyup', function(event) {
+            // Verifica se o valor do input atual não está vazio
+            if (event.target.value !== '') {
+                // Move o foco para o próximo input se não for o último
+                if (index < inputs.length - 1) {
+                    inputs[index + 1].focus();
+                }
+            }
+        });
+    });
+};
+
         </script>
 </body>
 
