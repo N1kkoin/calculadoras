@@ -173,6 +173,7 @@
                 <div class="div6">
                     <span class="abcx">X</span>
                     <div class="x">
+                        <input type="text" id="result_thousands" placeholder="M" readonly>
                         <input type="text" id="result_hundreds" placeholder="C" readonly>
                         <input type="text" id="result_tens" placeholder="D" readonly>
                         <input type="text" id="result_units" placeholder="U" readonly>
@@ -190,8 +191,6 @@
                 </div>
             </div>
         </div>
-        <p class="incompleto" id="mensagem-cdu"></p>
-
     </div>
     <div>
         <script>
@@ -225,27 +224,28 @@
                     var resultado = (b * c) / a;
                     var resto = (b * c) % a;
 
-                    // Calculate hundreds, tens, and units for the result
-                    document.getElementById('result_hundreds').value = Math.floor(resultado / 100);
-                    document.getElementById('result_tens').value = Math.floor((resultado % 100) / 10);
-                    document.getElementById('result_units').value = Math.floor(resultado % 10);
+                // Calculate thousands, hundreds, tens, and units for the result
+                document.getElementById('result_thousands').value = Math.floor(resultado / 1000);
+                document.getElementById('result_hundreds').value = Math.floor((resultado % 1000) / 100);
+                document.getElementById('result_tens').value = Math.floor((resultado % 100) / 10);
+                document.getElementById('result_units').value = Math.floor(resultado % 10);
 
-                    // Calculate hundreds, tens, and units for the remainder
-                    document.getElementById('rest_hundreds').value = Math.floor(resto / 100);
-                    document.getElementById('rest_tens').value = Math.floor((resto % 100) / 10);
-                    document.getElementById('rest_units').value = Math.floor(resto % 10);
+                // Calculate hundreds, tens, and units for the remainder
+                document.getElementById('rest_hundreds').value = Math.floor(resto / 100);
+                document.getElementById('rest_tens').value = Math.floor((resto % 100) / 10);
+                document.getElementById('rest_units').value = Math.floor(resto % 10);
 
-                    document.getElementById('mensagem').innerText = "";
-                } else {
-                    document.getElementById('result_hundreds').value = "";
-                    document.getElementById('result_tens').value = "";
-                    document.getElementById('result_units').value = "";
-                    document.getElementById('rest_hundreds').value = "";
-                    document.getElementById('rest_tens').value = "";
-                    document.getElementById('rest_units').value = "";
-                    document.getElementById('mensagem-cdu').innerText = "Preencha todos os campos corretamente.";
-                }
+                document.getElementById('mensagem').innerText = "";
+            } else {
+                document.getElementById('result_thousands').value = "";
+                document.getElementById('result_hundreds').value = "";
+                document.getElementById('result_tens').value = "";
+                document.getElementById('result_units').value = "";
+                document.getElementById('rest_hundreds').value = "";
+                document.getElementById('rest_tens').value = "";
+                document.getElementById('rest_units').value = "";
             }
+        }
 
         </script>
 </body>
