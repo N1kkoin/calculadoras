@@ -88,7 +88,7 @@
 
 
 
-        input[type="text"] {
+        input[type="number"] {
             padding: 8px;
             border: 1px solid #ccc;
             border-radius: 5px;
@@ -97,13 +97,13 @@
             box-sizing: border-box;
         }
 
-        input[type="text"]:focus {
+        input[type="number"]:focus {
             outline: none;
             border-color: #e36129;
         }
 
 
-        input[type="text"][readonly] {
+        input[type="number"][readonly] {
             background-color: #f2f2f2;
         }
 
@@ -132,7 +132,7 @@
             gap: 5px;
         }
 
-        .abcx{
+        .abcx {
             background-color: #f2f2f2;
             display: flex;
             margin-bottom: 5px;
@@ -147,45 +147,54 @@
                 <div class="div1">
                     A
                     <div class="a">
-                        <input type="text" id="a_hundreds" placeholder="C" oninput="calculatecdu()">
-                        <input type="text" id="a_tens" placeholder="D " oninput="calculatecdu()">
-                        <input type="text" id="a_units" placeholder="U" oninput="calculatecdu()">
+                        <input type="number" min="0" max="9" id="a_hundreds" placeholder="C" oninput="calculatecdu()"
+                            onkeydown="return isSingleNumber(event)">
+                        <input type="number" min="0" max="9" id="a_tens" placeholder="D " oninput="calculatecdu()"
+                            onkeydown="return isSingleNumber(event)">
+                        <input type="number" min="0" max="9" id="a_units" placeholder="U" oninput="calculatecdu()"
+                            onkeydown="return isSingleNumber(event)">
                     </div>
                 </div>
                 <div class="div2 estapara">Está para</div>
                 <div class="div3">
                     B
                     <div class="b">
-                        <input type="text" id="b_hundreds" placeholder="C" oninput="calculatecdu()">
-                        <input type="text" id="b_tens" placeholder="D" oninput="calculatecdu()">
-                        <input type="text" id="b_units" placeholder="U" oninput="calculatecdu()">
+                        <input type="number" min="0" max="9" id="b_hundreds" placeholder="C" oninput="calculatecdu()"
+                            onkeydown="return isSingleNumber(event)">
+                        <input type="number" min="0" max="9" id="b_tens" placeholder="D" oninput="calculatecdu()"
+                            onkeydown="return isSingleNumber(event)">
+                        <input type="number" min="0" max="9" id="b_units" placeholder="U" oninput="calculatecdu()"
+                            onkeydown="return isSingleNumber(event)">
                     </div>
                 </div>
                 <div class="div4">
                     C
                     <div class="c">
-                        <input type="text" id="c_hundreds" placeholder="C" oninput="calculatecdu()">
-                        <input type="text" id="c_tens" placeholder="D" oninput="calculatecdu()">
-                        <input type="text" id="c_units" placeholder="U" oninput="calculatecdu()">
+                        <input type="number" min="0" max="9" id="c_hundreds" placeholder="C" oninput="calculatecdu()"
+                            onkeydown="return isSingleNumber(event)">
+                        <input type="number" min="0" max="9" id="c_tens" placeholder="D" oninput="calculatecdu()"
+                            onkeydown="return isSingleNumber(event)">
+                        <input type="number" min="0" max="9" id="c_units" placeholder="U" oninput="calculatecdu()"
+                            onkeydown="return isSingleNumber(event)">
                     </div>
                 </div>
                 <div class="div5 estapara">Está para</div>
                 <div class="div6">
                     <span class="abcx">X</span>
                     <div class="x">
-                        <input type="text" id="result_hundreds" placeholder="C" readonly>
-                        <input type="text" id="result_tens" placeholder="D" readonly>
-                        <input type="text" id="result_units" placeholder="U" readonly>
+                        <input type="number" id="result_hundreds" placeholder="C" readonly>
+                        <input type="number" id="result_tens" placeholder="D" readonly>
+                        <input type="number" id="result_units" placeholder="U" readonly>
                     </div>
                 </div>
                 <div class="div8 assim">Assim como</div>
                 <div class="div10">
                     RESTO DA DIVISÃO X
                     <div class="resto">
-                        
-                        <input type="text" id="rest_hundreds" placeholder="C" readonly>
-                        <input type="text" id="rest_tens" placeholder="D" readonly>
-                        <input type="text" id="rest_units" placeholder="U" readonly>
+
+                        <input type="number" id="rest_hundreds" placeholder="C" readonly>
+                        <input type="number" id="rest_tens" placeholder="D" readonly>
+                        <input type="number" id="rest_units" placeholder="U" readonly>
                     </div>
                 </div>
             </div>
@@ -195,22 +204,9 @@
     </div>
     <div>
         <script>
-            function calculate() {
-                var a = parseFloat(document.getElementById('a').value);
-                var b = parseFloat(document.getElementById('b').value);
-                var c = parseFloat(document.getElementById('c').value);
-
-                if (!isNaN(a) && !isNaN(b) && !isNaN(c)) {
-                    var resultado = (b * c) / a;
-                    document.getElementById('resultado').value = resultado.toFixed(2);
-                    document.getElementById('mensagem').innerText = "";
-                } else {
-                    document.getElementById('resultado').value = "";
-                    document.getElementById('mensagem').innerText = "Preencha os campos";
-                }
-            }
-
             function calculatecdu() {
+
+
                 var a = 100 * parseFloat(document.getElementById('a_hundreds').value || 0) +
                     10 * parseFloat(document.getElementById('a_tens').value || 0) +
                     parseFloat(document.getElementById('a_units').value || 0);
@@ -235,7 +231,7 @@
                     document.getElementById('rest_tens').value = Math.floor((resto % 100) / 10);
                     document.getElementById('rest_units').value = Math.floor(resto % 10);
 
-                    document.getElementById('mensagem').innerText = "";
+                    document.getElementById('mensagem').innernumber = "";
                 } else {
                     document.getElementById('result_hundreds').value = "";
                     document.getElementById('result_tens').value = "";
@@ -243,10 +239,28 @@
                     document.getElementById('rest_hundreds').value = "";
                     document.getElementById('rest_tens').value = "";
                     document.getElementById('rest_units').value = "";
-                    document.getElementById('mensagem-cdu').innerText = "Preencha todos os campos corretamente.";
+                    document.getElementById('mensagem-cdu').innernumber = "Preencha todos os campos corretamente.";
                 }
             }
 
+            function isSingleNumber(event) {
+                // Verifica se o texto dentro do input está completamente selecionado
+                const selection = window.getSelection();
+                if (selection.toString() === event.target.value) {
+                    // Permite a alteração do texto se estiver completamente selecionado
+                    return;
+                }
+
+                // Verifica se o valor atual do input já contém um número
+                if (event.target.value.length >= 1) {
+                    // Se já contém um número, previne a entrada de mais números, exceto se a tecla pressionada for um Backspace ou Delete
+                    if (event.key !== 'Backspace' && event.key !== 'Delete') {
+                        event.preventDefault();
+                    }
+                }
+            }
+
+            
         </script>
 </body>
 
