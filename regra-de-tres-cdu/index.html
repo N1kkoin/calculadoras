@@ -55,6 +55,7 @@
 
         .div7 {
             grid-area: 2 / 1 / 3 / 2;
+
         }
 
         .div8 {
@@ -62,6 +63,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            margin: 0 30px;
         }
 
         .div9 {
@@ -74,54 +76,88 @@
 
         }
 
+        .div11 {
+            grid-area: 4 / 2 / 5 / 3;
+          
+        }
+
+        .div12 {
+            grid-area: 4 / 1 / 5 / 2;
+        }
+
         .estapara {
             font-size: small;
-            color: #e36129;
+            color: #f1e7cb;
             font-weight: bold;
             text-transform: uppercase;
+            background-color: #143249;
+
         }
 
         .assim {
-            color: #ccc;
+            color: white;
             font-size: 12px;
             text-transform: uppercase;
             font-weight: bold;
+            padding: 10px 15px;
+            background-color: #143249;
+
         }
-
-
 
         input[type="number"] {
             padding: 8px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
+            border: 2px solid #143249;
             font-weight: bold;
             width: 100%;
             box-sizing: border-box;
+            background-color: #FFFADC;
         }
 
         input[type="number"]:focus {
             outline: none;
-            border-color: #e36129;
+            border-color: #FFFADC;
         }
 
 
         input[type="number"][readonly] {
-            background-color: #f2f2f2;
+            background-color: #eee3c5;
+            border-color: #143249;
+        }
+
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        input[type=number] {
+            -moz-appearance: textfield;
+            /* Firefox */
         }
 
         .incompleto {
-            color: #e36129;
+            color: #22425B;
             margin-top: 10px;
             text-align: center;
-            font-size: 12px;
+            font-size: 16px;
+            font-weight: bold;
+
         }
 
         .calculadora-caixa {
             display: flex;
             flex-direction: column;
-            border: 2px solid #ccc;
+            border: 5px solid #143249;
+            box-shadow: inset 0px 0px 0px 2px #eee3c5;
+            /* Sombra interna que parece uma borda de 2px */
+
             padding: 20px;
-            border-radius: 15px;
+            background-color: #274C66;
+        }
+
+        .caixa-total {
+            max-width: 600px;
+
         }
 
         .a,
@@ -131,23 +167,41 @@
         .resto {
             display: flex;
             height: fit-content;
-            gap: 5px;
+            gap: 3px;
         }
 
+        .a {
+            padding-right: 3px;
+        }
+
+        .b {
+            padding-left: 3px;
+        }
+
+        .c {
+            padding-right: 3px;
+        }
+
+        .x {
+            padding-left: 3px;
+        }
+
+
         .abcx {
-            background-color: #f2f2f2;
+            background-color: #143249;
             display: flex;
-            margin-bottom: 5px;
+            margin-bottom: 3px;
             font-size: small;
             padding: 4px 10px;
-            border-radius: 5px;
             justify-content: center;
+            color: white;
+            font-weight: 700;
         }
     </style>
 </head>
 
 <body>
-    <div style="max-width: 600px;">
+    <div class="caixa-total">
         <div class="calculadora-caixa">
             <div class="parent">
                 <div class="div1">
@@ -193,9 +247,11 @@
                         <input type="number" id="result_units" placeholder="U" readonly>
                     </div>
                 </div>
+                <div class="div11"></div>
+                <div class="div12"></div>
                 <div class="div8 assim">Assim como</div>
                 <div class="div10">
-                    <span class="abcx">RESTO DA DIVISÃO X</span>
+                    <span style=" margin-top: 5px;" class="abcx">RESTO DA DIVISÃO X</span>
                     <div class="resto">
 
                         <input type="number" id="rest_hundreds" placeholder="C" readonly>
@@ -222,7 +278,7 @@
                 if (div1Value && div3Value) {
                     if (div3Value >= div1Value) {
                         // Mostrar aviso
-                        document.getElementById('mensagem-cdu').innerText = "O valor de B deve ser menor que o valor de A.";
+                        document.getElementById('mensagem-cdu').innerHTML = "O valor de <span style='color: red;'>B</span> deve ser menor que o valor de <span style='color: red;'>A</span>.";
 
                         // Limpar div3 após 1 segundo
                         setTimeout(function () {
