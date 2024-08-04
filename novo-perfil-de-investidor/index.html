@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Questionário de Perfil de Investidor</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+    <script src="https://rawgit.com/gliffy/canvas2svg/master/canvas2svg.js"></script>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+        h1 {
+            color: #E78E11;
+            margin-top: 50px;
+            font-family: "Roboto Slab", Sans-serif;
+            font-size: 30px;
+        }
+
+        .perfil-investidor {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0 auto;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            max-width: 800px;
+        }
+
+        .perfil-investidor .chartContainer {
+            width: 100%;
+            box-sizing: border-box;
+            background: #fff;
+            padding: 20px;
+            height: 100%;
+            margin-top: 20px;
+        }
+
+        .perfil-investidor form {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+
+        }
+
+        .perfil-investidor form div {
+            margin-bottom: 15px;
+        }
+
+        .perfil-investidor form p {
+            margin: 20px 0 10px;
+            font-family: "Roboto Slab", Sans-serif;
+            font-size: 23px;
+            color: #A7A7A7;
+        }
+
+        .perfil-investidor form label {
+            cursor: pointer;
+            font-family: "Roboto", serif;
+
+        }
+
+        .perfil-investidor form input[type="radio"] {
+            margin-right: 10px;
+        }
+
+        .perfil-investidor button {
+            background-color: #0FB100;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            font-size: 16px;
+            font-family: "Roboto Slab", Sans-serif;
+            transition: all 0.3s ease;
+
+        }
+
+        .perfil-investidor button:hover {
+            background-color: #E78E11;
+
+        }
+
+        .perfil-investidor button:disabled {
+            background-color: #b0bec5;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+
+<body class="perfil-investidor">
+    <h1>Questionário de Perfil de Investidor</h1>
+    <form id="quizForm">
+        <!-- Perguntas e Respostas serão geradas dinamicamente aqui -->
+    </form>
+    <button id="submitButton" type="button" onclick="calculateScore()" disabled>Enviar</button>
+    <div class="chartContainer">
+        <canvas id="myChart"  width="500" height="500"></canvas>
+    </div>
+
+    <script>
+        // Dados extraídos da planilha
+        var questions = {
+            "Qual seu objetivo com seus investimentos?": [
+                { "answer": "Ganhar mais que a poupança", "scores": [5, 2, 1, 0, 0] },
+                { "answer": "Aumentar meu patrimônio", "scores": [1, 5, 2, 1, 0] },
+                { "answer": "Ganhar mais que a inflação", "scores": [1, 1, 5, 2, 0] },
+                { "answer": "Aposentadoria futura", "scores": [1, 1, 2, 5, 0] },
+                { "answer": "Sair da pobreza", "scores": [1, 1, 2, 0, 5] },
+                { "answer": "Não defini ainda", "scores": [1, 1, 0, 0, 5] }
+            ],
+            "Você poupa regularmente?": [
+                { "answer": "Se sobra, quando recebo algum extra como FGTS ou 13º", "scores": [5, 1, 1, 0, 2] },
+                { "answer": "Mês sim, mês não", "scores": [1, 5, 1, 0, 2] },
+                { "answer": "Mensalmente", "scores": [0, 1, 5, 2, 0] },
+                { "answer": "Todo semana se possível", "scores": [0, 0, 2, 5, 0] },
+                { "answer": "Quando dá", "scores": [2, 0, 0, 0, 5] },
+                { "answer": "Não", "scores": [2, 0, 0, 0, 5] }
+            ],
+            "Qual sua renda mensal aproximada?": [
+                { "answer": "Até R$2000", "scores": [5, 2, 2, 1, 1] },
+                { "answer": "De R$2000 a R$3500", "scores": [2, 5, 2, 1, 1] },
+                { "answer": "De R$3501 a R$5000", "scores": [2, 2, 5, 1, 1] },
+                { "answer": "Mais de R$5000", "scores": [1, 2, 2, 5, 1] },
+                { "answer": "Varia muito, tem mês que ganho mais com hora extra", "scores": [1, 1, 2, 0, 5] }
+            ],
+            "Quanto você pretende investir?": [
+                { "answer": "Minhas economias", "scores": [5, 2, 2, 0, 1] },
+                { "answer": "De 5% a 10% da minha renda mensal", "scores": [2, 5, 2, 1, 0] },
+                { "answer": "De 10% a 20% da minha renda mensal", "scores": [1, 1, 5, 2, 0] },
+                { "answer": "De 20% a 40% da minha renda mensal", "scores": [0, 1, 2, 5, 0] },
+                { "answer": "O que eu conseguir", "scores": [1, 1, 2, 0, 5] }
+            ],
+            "Quanto você quer de rendimento?": [
+                { "answer": "Mais do que a poupança já tá bom, sem IR seria bom", "scores": [5, 2, 0, 0, 0] },
+                { "answer": "Mais do que a SELIC ou Di", "scores": [0, 5, 2, 0, 1] },
+                { "answer": "Mais do que a renda fixa já descontando o IR", "scores": [1, 1, 5, 1, 2] },
+                { "answer": "Rendimento Real acima da Renda Fixa Líquida", "scores": [0, 0, 2, 5, 0] },
+                { "answer": "Mais de os juros que eu pago para o banco", "scores": [1, 1, 2, 0, 5] }
+            ],
+            "Você já investiu antes?": [
+                { "answer": "Nunca", "scores": [5, 2, 1, 0, 2] },
+                { "answer": "Poupança e/ou CDB", "scores": [2, 5, 1, 0, 1] },
+                { "answer": "Poupança, CDB, Tesouro Direto", "scores": [1, 2, 5, 1, 1] },
+                { "answer": "Sim, renda fixa e variável", "scores": [1, 1, 2, 5, 2] },
+                { "answer": "Sim, títulos de capitalização e/ou imóveis", "scores": [1, 1, 2, 0, 5] }
+            ],
+            "Qual seu conhecimento de Finanças?": [
+                { "answer": "Apenas sei o que é Poupança e CDB", "scores": [5, 2, 0, 0, 1] },
+                { "answer": "Conheço bem o que é Renda Fixa", "scores": [0, 5, 2, 0, 0] },
+                { "answer": "Conheço bem o que é Renda Fixa e um pouco de Renda Variável", "scores": [0, 0, 5, 0, 1] },
+                { "answer": "Já estudei o assunto e li livros de Renda Fixa e Variável", "scores": [0, 0, 2, 5, 0] },
+                { "answer": "Já assiste vários vídeos no Youtube sobre Ações", "scores": [0, 0, 1, 0, 5] }
+            ],
+            "Qual sua relação com o Risco?": [
+                { "answer": "Não posso perder meu dinheiro em hipótese alguma", "scores": [5, 1, 0, 0, 2] },
+                { "answer": "Aceito arriscar no máximo 10% do que investi", "scores": [0, 5, 2, 0, 0] },
+                { "answer": "Aceito arriscar até 1 terço do que investir", "scores": [0, 1, 5, 0, 2] },
+                { "answer": "Compreendo os riscos e diversifico meus investimentos", "scores": [0, 0, 1, 5, 0] },
+                { "answer": "Não existe ganho sem Risco", "scores": [0, 0, 0, 0, 5] }
+            ],
+            "Defina os prazos": [
+                { "answer": "Curto prazo é 1 semana; Médio prazo 1 mês; Longo prazo 1 ano", "scores": [5, 2, 0, 0, 1] },
+                { "answer": "Curto prazo é 1 mês; Médio prazo 6 meses; Longo prazo 1 ano", "scores": [2, 5, 0, 0, 1] },
+                { "answer": "Curto prazo é 1 mês; Médio prazo 1 ano; Longo prazo 3 anos", "scores": [0, 1, 5, 2, 0] },
+                { "answer": "Curto prazo é 1 a 3 meses; Médio prazo até 1 ano; Longo prazo até 5 anos", "scores": [0, 0, 2, 5, 0] },
+                { "answer": "Curto prazo é 1 mês; Médio prazo 3 meses; Longo prazo 6 meses", "scores": [2, 1, 0, 0, 5] }
+            ],
+            "Com relação à sua situação de endividamento": [
+                { "answer": "Não tenho dívida nenhuma, nem uso cartão de crédito", "scores": [5, 2, 1, 1, 0] },
+                { "answer": "Tenho alguns financiamentos, carro e/ou casa, sob controle mas aperta o orçamento", "scores": [2, 5, 1, 0, 1] },
+                { "answer": "Tenho alguns financiamentos, carro e/ou casa, dentro do planejamento orçamentário", "scores": [1, 1, 5, 2, 0] },
+                { "answer": "Não tenho dívidas, apenas fatura do cartão de crédito sob controle", "scores": [1, 1, 2, 5, 0] },
+                { "answer": "Tenho algumas dívidas sob controle, empréstimos e financiamentos", "scores": [1, 1, 2, 0, 5] },
+                { "answer": "Tenho dívidas em aberto, como cheque especial ou parcelamento de cartão de crédito atrasado", "scores": [5, 0, 0, 0, 5] }
+            ],
+            "Com relação ao seu patrimônio atual": [
+                { "answer": "Tenho até R$1000 guardados, não tenho casa ou carro quitados no meu nome", "scores": [5, 2, 1, 0, 2] },
+                { "answer": "Tenho até R$1000 guardados e tenho casa ou carro quitados no meu nome", "scores": [2, 5, 1, 0, 1] },
+                { "answer": "Tenho mais de R$1000 guardados e bens como casa ou carro no meu nome", "scores": [1, 2, 5, 2, 0] },
+                { "answer": "Tenho Reserva de Emergência consolidada e investimentos, bens não são minha prioridade", "scores": [0, 0, 2, 5, 0] },
+                { "answer": "Não tenho nenhum dinheiro guardado, nem bens quitados no meu nome", "scores": [2, 1, 0, 0, 5] },
+                { "answer": "Não tenho nenhum dinheiro guardado, mas tenho casa ou carro quitados no meu nome", "scores": [2, 2, 1, 0, 5] }
+            ],
+            "Você prefere um investimento de Renda Fixa com": [
+                { "answer": "Retorno previsível baixo e garantido, em poucos meses", "scores": [5, 2, 0, 0, 0] },
+                { "answer": "Retorno previsível mediano e garantido, em alguns anos", "scores": [2, 5, 1, 0, 0] },
+                { "answer": "Retorno previsível alto, pouco garantido, em muitos anos", "scores": [1, 2, 5, 1, 0] },
+                { "answer": "Retorno Potencial Especulativo Mediano com baixo risco de prejuízo, em poucos anos", "scores": [0, 0, 2, 5, 1] },
+                { "answer": "Retorno Potencial Especulativo Elevado com alto risco de prejuízo, em poucos semanas", "scores": [0, 0, 0, 1, 5] }
+            ],
+            "Você prefere um investimento de Renda Variável com": [
+                { "answer": "Focar em alternativas seguras como empresas famosas, que pagam dividendos sempre", "scores": [5, 2, 0, 0, 0] },
+                { "answer": "Focar em alternativas que sejam associadas à empresas já consolidadas, se pagarem dividendos melhor", "scores": [2, 5, 0, 0, 0] },
+                { "answer": "Equilibrar entre empresas pagadoras de dividendos e empresas com potencial de valorização", "scores": [0, 2, 5, 1, 0] },
+                { "answer": "Foco em empresas com histórico de bons dividendos, empresas subvalorizadas com potencial de valorização e os excedentes em empresas com potencial especulativo", "scores": [0, 1, 2, 5, 0] },
+                { "answer": "Focar em comprar ações baratas e vender com lucro conforme o mercado flutua, especular em cima disso", "scores": [0, 0, 0, 0, 5] }
+            ],
+            "Você prefere deixar sua reserva de emergências em": [
+                { "answer": "Conta Corrente", "scores": [5, 2, 0, 0, 0] },
+                { "answer": "Poupança", "scores": [2, 5, 1, 0, 0] },
+                { "answer": "CDB DI", "scores": [1, 2, 5, 0, 0] },
+                { "answer": "Distribuído entre CDB de Liquidez diária, Fundos DI e Tesouro Selic", "scores": [0, 0, 2, 5, 0] },
+                { "answer": "Ouro, FIIs, LCA, LCI e CDB", "scores": [0, 0, 0, 0, 5] }
+            ]
+        };
+        // Perfis
+        var profiles = ["Conservador", "Moderado", "Arrojado", "Objetivo", "Apostador"];
+
+        // Gerar perguntas e respostas dinamicamente
+        var form = document.getElementById('quizForm');
+        var questionIndex = 1;
+        var totalQuestions = Object.keys(questions).length;
+        var answeredQuestions = new Set();
+
+        for (var question in questions) {
+            var div = document.createElement('div');
+            var p = document.createElement('p');
+            p.textContent = question;
+            div.appendChild(p);
+            questions[question].forEach(function (answerObj, answerIndex) {
+                var input = document.createElement('input');
+                input.type = 'radio';
+                input.id = 'q' + questionIndex + '_a' + answerIndex; // ID único
+                input.name = 'q' + questionIndex;
+                input.value = JSON.stringify(answerObj.scores); // armazenar pontuação como string JSON
+                input.addEventListener('change', handleInputChange);
+
+                var label = document.createElement('label');
+                label.setAttribute('for', input.id);
+                label.textContent = answerObj.answer;
+
+                div.appendChild(input);
+                div.appendChild(label);
+                div.appendChild(document.createElement('br'));
+            });
+            form.appendChild(div);
+            questionIndex++;
+        }
+
+        function handleInputChange() {
+            var questionNumber = this.name.replace('q', '');
+            answeredQuestions.add(questionNumber);
+            updateSubmitButtonState();
+        }
+
+        function updateSubmitButtonState() {
+            var allAnswered = (answeredQuestions.size === totalQuestions);
+            document.getElementById('submitButton').disabled = !allAnswered;
+        }
+
+        // Calcular a pontuação
+        function calculateScore() {
+            var formData = new FormData(form);
+            var scores = [0, 0, 0, 0, 0];
+
+            formData.forEach(function (value) {
+                var scoreArray = JSON.parse(value); // converter string JSON de volta para array
+                for (var i = 0; i < scores.length; i++) {
+                    scores[i] += scoreArray[i];
+                }
+            });
+
+            new Chart("myChart", {
+                type: "radar",
+                data: {
+                    labels: profiles,
+                    datasets: [{
+                        label: "Pontuação do Perfil de Investidor",
+                        backgroundColor: "#ff2f0b3d",
+                        borderColor: "#FF670B",
+                        borderJoinStyle: "miter",
+                        pointBorderColor: "#FF670B",
+                        pointBackgroundColor: "white",
+                        pointBorderWidth: 3,
+                        pointHoverBackgroundColor: "#FF670B",
+                        pointHoverBorderColor: "#FF670B",
+                        pointHoverBorderWidth: 5,
+                        pointRadius: 4,
+                        pointHitRadius: 10,
+                        data: scores
+                    }]
+                },
+                options: {
+                    title: {
+                        display: true,
+                        text: "Resultados do Perfil de Investidor"
+                    },
+                    scale: {
+                        ticks: {
+                            beginAtZero: true,
+                            max: 70, //suggestedMax: 50
+
+                        }
+
+                    },
+
+                    tooltips: {
+                        callbacks: {
+                            title: function (tooltipItems, data) {
+                                // Exibe apenas o nome do perfil no tooltip
+                                return data.labels[tooltipItems[0].index];
+                            },
+                            label: function (tooltipItem, data) {
+                                // Exibe apenas o nome do perfil no tooltip
+                                return tooltipItem.value;
+                            }
+                        }
+                    },
+                    responsive: true,
+                    maintainAspectRatio: false
+                }
+            });
+        }
+
+        window.addEventListener('afterprint', () => {
+            myChart.resize();
+        });
+    </script>
+
+</body>
+
+</html>
