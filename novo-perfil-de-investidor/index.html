@@ -16,37 +16,38 @@
             margin-top: 50px;
             font-family: "Roboto Slab", Sans-serif;
             font-size: 30px;
+            text-align: center;
         }
 
         .perfil-investidor {
             font-family: "Roboto", Sans-serif;
             margin: 0 auto;
-            padding: 0;
             display: flex;
             flex-direction: column;
             align-items: center;
-            width: 100%;
+            width: calc(100% - 20px);
             max-width: 800px;
             background-color: #f4f4f4;
+            padding: 20px 10px;
         }
 
         .perfil-investidor .chartContainer {
             width: 100%;
             box-sizing: border-box;
             background: #fff;
-            padding: 20px;
-            height: 100%;
             margin-top: 20px;
             border-radius: 5px;
-
+            box-sizing: border-box;
+            padding: 20px 0;    
         }
 
         .perfil-investidor form {
             background: #fff;
             padding: 20px;
             border-radius: 5px;
-            margin: 20px 0;
-
+            box-sizing: border-box;
+            width: 100%;
+            margin-bottom: 20px;
         }
 
         .perfil-investidor div:first-child p{
@@ -134,7 +135,7 @@
     </form>
     <button id="submitButton" type="button" onclick="calculateScore()" disabled>Enviar</button>
     <div class="chartContainer">
-        <canvas id="myChart" width="500" height="550"></canvas>
+        <canvas id="myChart" width="100%" height="550"></canvas>
     </div>
     <a href="https://nikkoin.art/" target="_blank" class="nikkoin">
         <p>Feito por</p>
