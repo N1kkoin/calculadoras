@@ -19,8 +19,7 @@
         }
 
         .perfil-investidor {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
+            font-family: "Roboto", Sans-serif;
             margin: 0 auto;
             padding: 0;
             display: flex;
@@ -28,6 +27,7 @@
             align-items: center;
             width: 100%;
             max-width: 800px;
+            background-color: #f4f4f4;
         }
 
         .perfil-investidor .chartContainer {
@@ -37,14 +37,20 @@
             padding: 20px;
             height: 100%;
             margin-top: 20px;
+            border-radius: 5px;
+
         }
 
         .perfil-investidor form {
             background: #fff;
             padding: 20px;
-            border-radius: 8px;
+            border-radius: 5px;
             margin: 20px 0;
 
+        }
+
+        .perfil-investidor div:first-child p{
+            margin-top: 0;
         }
 
         .perfil-investidor form div {
@@ -64,9 +70,15 @@
 
         }
 
-        .perfil-investidor form input[type="radio"] {
+        .perfil-investidor form input[type="radio"]:checked {
             margin-right: 10px;
+            accent-color: #858585;
         }
+
+        .perfil-investidor form input[type="radio"] {
+            margin-right: 5px;
+        }
+
 
         .perfil-investidor button {
             background-color: #0FB100;
@@ -87,8 +99,30 @@
         }
 
         .perfil-investidor button:disabled {
-            background-color: #b0bec5;
+            background-color: #A7A7A7;
             cursor: not-allowed;
+        }
+
+        .nikkoin {
+            display: flex;
+            align-content: center;
+            justify-content: center;
+            width: 100%;
+            text-decoration: none;
+            max-width: 100px;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .nikkoin p {
+            color: #cccccc;
+            white-space: nowrap;
+            /* Impede a quebra de linha */
+            font-family: "Roboto", Sans-serif;
+        }
+
+        .nikkoin img {
+            filter: brightness(0) saturate(100%) invert(92%) sepia(1%) saturate(373%) hue-rotate(314deg) brightness(94%) contrast(93%);
         }
     </style>
 </head>
@@ -100,8 +134,13 @@
     </form>
     <button id="submitButton" type="button" onclick="calculateScore()" disabled>Enviar</button>
     <div class="chartContainer">
-        <canvas id="myChart"  width="500" height="500"></canvas>
+        <canvas id="myChart" width="500" height="550"></canvas>
     </div>
+    <a href="https://nikkoin.art/" class="nikkoin">
+        <p>Feito por</p>
+        <img src="https://nikkoin.art/images/feito-por-NH.svg">
+    </a>
+
 
     <script>
         // Dados extraídos da planilha
