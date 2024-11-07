@@ -134,6 +134,7 @@
     </form>
     <button id="submitButton" type="button" onclick="calculateScore()" disabled>Enviar</button>
     <div class="chartContainer">
+        <div class="porquinho"></div>
         <canvas id="myChart" width="100%" height="550"></canvas>
     </div>
     <a href="https://nikkoin.art/" target="_blank" class="nikkoin">
@@ -150,16 +151,14 @@
                 { "answer": "Aumentar meu patrimônio", "scores": [1, 5, 2, 1, 0] },
                 { "answer": "Ganhar mais que a inflação", "scores": [1, 1, 5, 2, 0] },
                 { "answer": "Aposentadoria futura", "scores": [1, 1, 2, 5, 0] },
-                { "answer": "Sair da pobreza", "scores": [1, 1, 2, 0, 5] },
-                { "answer": "Não defini ainda", "scores": [1, 1, 0, 0, 5] }
+                { "answer": "Sair da pobreza", "scores": [1, 1, 2, 0, 5] }
             ],
             "Você poupa regularmente?": [
                 { "answer": "Se sobra, quando recebo algum extra como FGTS ou 13º", "scores": [5, 1, 1, 0, 2] },
                 { "answer": "Mês sim, mês não", "scores": [1, 5, 1, 0, 2] },
                 { "answer": "Mensalmente", "scores": [0, 1, 5, 2, 0] },
                 { "answer": "Todo semana se possível", "scores": [0, 0, 2, 5, 0] },
-                { "answer": "Quando dá", "scores": [2, 0, 0, 0, 5] },
-                { "answer": "Não", "scores": [2, 0, 0, 0, 5] }
+                { "answer": "Não, muito raramente", "scores": [2, 0, 0, 0, 5] }
             ],
             "Qual sua renda mensal aproximada?": [
                 { "answer": "Até R$2000", "scores": [5, 2, 2, 1, 1] },
@@ -185,9 +184,9 @@
             "Você já investiu antes?": [
                 { "answer": "Nunca", "scores": [5, 2, 1, 0, 2] },
                 { "answer": "Poupança e/ou CDB", "scores": [2, 5, 1, 0, 1] },
-                { "answer": "Poupança, CDB, Tesouro Direto", "scores": [1, 2, 5, 1, 1] },
-                { "answer": "Sim, renda fixa e variável", "scores": [1, 1, 2, 5, 2] },
-                { "answer": "Sim, títulos de capitalização e/ou imóveis", "scores": [1, 1, 2, 0, 5] }
+                { "answer": "Sim, CDB, LCI, LCA ou Tesouro Direto", "scores": [1, 2, 5, 1, 1] },
+                { "answer": "Sim, Renda Fixa e Renda Variável", "scores": [1, 1, 2, 5, 2] },
+                { "answer": "Sim, títulos de capitalização e/ou imóveis, FIIs ou Ações ou Criptos", "scores": [1, 1, 2, 0, 5] }
             ],
             "Qual seu conhecimento de Finanças?": [
                 { "answer": "Apenas sei o que é Poupança e CDB", "scores": [5, 2, 0, 0, 1] },
@@ -246,6 +245,13 @@
                 { "answer": "CDB DI", "scores": [1, 2, 5, 0, 0] },
                 { "answer": "Distribuído entre CDB de Liquidez diária, Fundos DI e Tesouro Selic", "scores": [0, 0, 2, 5, 0] },
                 { "answer": "Ouro, FIIs, LCA, LCI e CDB", "scores": [0, 0, 0, 0, 5] }
+            ],
+            "Em que momento da sua vida financeira você está?": [
+                { "answer": "Começando a investir e fazer o Pé de Meia", "scores": [5, 2, 0, 0, 0] },
+                { "answer": "Completando meu Pé de Meia, começando a investir em Renda Fixa", "scores": [2, 5, 1, 0, 0] },
+                { "answer": "Já invisto em Renda Fixa e tenho meu Pé de Meia", "scores": [1, 2, 5, 0, 0] },
+                { "answer": "Completei meu portfólio de Renda Fixa e começando na Renda Variável", "scores": [0, 0, 2, 5, 0] },
+                { "answer": "Começando a investir, quero ficar rico logo e parar de dever dinheiro", "scores": [0, 0, 0, 0, 5] }
             ]
         };
         // Perfis
