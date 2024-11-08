@@ -19,12 +19,12 @@
             text-align: center;
         }
 
-        h2{
+        h2 {
 
             color: #A7A7A7;
             margin-top: -20px;
             font-family: "Roboto", Sans-serif;
-            text-align: center; 
+            text-align: center;
         }
 
         .perfil-investidor {
@@ -163,7 +163,7 @@
         <h1>Resultado:</h1>
         <div class="porquinho"></div>
         <canvas id="myChart"></canvas>
-        
+
     </div>
     <a href="https://nikkoin.art/" target="_blank" class="nikkoin">
         <p>Feito por</p>
@@ -285,6 +285,13 @@
         // Perfis
         var profiles = ["Conservador", "Moderado", "Arrojado", "Objetivo", "Apostador"];
 
+        // Função para embaralhar um array
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+        }
         // Gerar perguntas e respostas dinamicamente
         var form = document.getElementById('quizForm');
         var questionIndex = 1;
@@ -296,6 +303,10 @@
             var p = document.createElement('p');
             p.textContent = question;
             div.appendChild(p);
+            
+            // Embaralhar as respostas antes de exibir
+            shuffleArray(questions[question]);
+
             questions[question].forEach(function (answerObj, answerIndex) {
                 var input = document.createElement('input');
                 input.type = 'radio';
